@@ -3,8 +3,8 @@
 
         <!-- Progress Note Tree View -->
         <record id="view_progress_note_tree" model="ir.ui.view">
-            <field name="name">progress.note.tree</field>
-            <field name="model">progress.note</field>
+            <field name="name">construction.progress.tree</field>
+            <field name="model">construction.progress</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -18,8 +18,8 @@
 
         <!-- Progress Note Form View -->
         <record id="view_progress_note_form" model="ir.ui.view">
-            <field name="name">progress.note.form</field>
-            <field name="model">progress.note</field>
+            <field name="name">construction.progress.form</field>
+            <field name="model">construction.progress</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -37,7 +37,7 @@
         <!-- Action to Open the Progress Note List View -->
         <record id="action_progress_note" model="ir.actions.act_window">
             <field name="name">Progress Note</field>
-            <field name="res_model">progress.note</field>
+            <field name="res_model">construction.progress</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_progress_note_tree"/>
         </record>

@@ -3,8 +3,8 @@
 
         <!-- Expenditure Management Tree View -->
         <record id="view_expenditure_management_tree" model="ir.ui.view">
-            <field name="name">expenditure.management.tree</field>
-            <field name="model">expenditure.management</field>
+            <field name="name">construction.expenditure.tree</field>
+            <field name="model">construction.expenditure</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -19,8 +19,8 @@
 
         <!-- Expenditure Management Form View -->
         <record id="view_expenditure_management_form" model="ir.ui.view">
-            <field name="name">expenditure.management.form</field>
-            <field name="model">expenditure.management</field>
+            <field name="name">construction.expenditure.form</field>
+            <field name="model">construction.expenditure</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -39,7 +39,7 @@
         <!-- Action to Open the Expenditure Management List View -->
         <record id="action_expenditure_management" model="ir.actions.act_window">
             <field name="name">Expenditure Management</field>
-            <field name="res_model">expenditure.management</field>
+            <field name="res_model">construction.expenditure</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_expenditure_management_tree"/>
         </record>

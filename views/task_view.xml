@@ -3,8 +3,8 @@
 
         <!-- Project Task Tree View -->
         <record id="view_project_task_tree" model="ir.ui.view">
-            <field name="name">project.task.tree</field>
-            <field name="model">project.task</field>
+            <field name="name">construction.task.tree</field>
+            <field name="model">construction.task</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -21,8 +21,8 @@
 
         <!-- Project Task Form View -->
         <record id="view_project_task_form" model="ir.ui.view">
-            <field name="name">project.task.form</field>
-            <field name="model">project.task</field>
+            <field name="name">construction.task.form</field>
+            <field name="model">construction.task</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -43,14 +43,13 @@
         <!-- Action to Open the Project Task List View -->
         <record id="action_project_task" model="ir.actions.act_window">
             <field name="name">Project Task</field>
-            <field name="res_model">project.task</field>
+            <field name="res_model">construction.task</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_project_task_tree"/>
         </record>
 
         <!-- Menu for Project Task -->
-        <menuitem id="menu_project_task_root" name="Project Task" parent="menu_construction"/>
-        <menuitem id="menu_project_task_list" name="Task List" parent="menu_project_task_root" action="action_project_task"/>
+        <menuitem id="menu_project_task_list" name="Task List" parent="menu_project_management_root" action="action_project_task"/>
 
     </data>
 </odoo>

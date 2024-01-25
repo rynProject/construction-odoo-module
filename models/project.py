@@ -1,7 +1,7 @@
 from odoo import models, fields, api
 
 class Project(models.Model):
-    _name = 'project.management'
+    _name = 'construction.project'
     _description = 'Project Management'
 
     name = fields.Char(string='Project Name', required=True)
@@ -15,8 +15,8 @@ class Project(models.Model):
     ], string='Status Proyek', default='draft')
     id_manajer_proyek = fields.Many2one('res.users', string='Project Manager', required=True)
 
-    task_ids = fields.One2many(comodel_name='project.task', inverse_name='id_proyek', string='Task List')
-    budget_ids = fields.One2many(comodel_name='budget.management', inverse_name='id_proyek', string='Budget List')
+    task_ids = fields.One2many(comodel_name='construction.task', inverse_name='id_proyek', string='Task List')
+    budget_ids = fields.One2many(comodel_name='construction.budget', inverse_name='id_proyek', string='Budget List')
     
     total_budget = fields.Integer(string='Total Budget', compute='_compute_total_budget', store=True)
 

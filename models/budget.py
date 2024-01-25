@@ -2,11 +2,11 @@ from odoo import models, fields
 import datetime
 
 class Budget(models.Model):
-    _name = 'budget.management'
+    _name = 'construction.budget'
     _description = 'Budget Management'
 
     name = fields.Char(string='Name')
-    id_proyek = fields.Many2one('project.management', string='ID Proyek', required=True)
+    id_proyek = fields.Many2one('construction.project', string='ID Proyek', required=True)
     kategori_anggaran = fields.Selection([
         ('worker', 'Workers'),
         ('materials', 'Materials'),
