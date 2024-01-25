@@ -16,4 +16,3 @@ class Budget(models.Model):
     tanggal_pembuatan_anggaran = fields.Date(string='Created Date', default=datetime.date.today())
     create_uid = fields.Many2one('res.users', string='Created By', readonly=True)
 
-    

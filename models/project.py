@@ -6,7 +6,6 @@ class Project(models.Model):
 
     name = fields.Char(string='Project Name', required=True)
     lokasi_proyek = fields.Char(string='Location')
-    anggaran_proyek = fields.Integer(string='Budget')
     tanggal_mulai = fields.Date(string='Start Date')
     tanggal_selesai = fields.Date(string='End Date')
     status_proyek = fields.Selection([

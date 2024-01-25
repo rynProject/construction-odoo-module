@@ -8,7 +8,6 @@
                 <tree>
                     <field name="name"/>
                     <field name="lokasi_proyek"/>
-                    <field name="anggaran_proyek"/>
                     <field name="tanggal_mulai"/>
                     <field name="tanggal_selesai"/>
                     <field name="status_proyek" decoration-success="status_proyek == 'completed'" decoration-warning="status_proyek == 'ongoing'" decoration-muted="status_proyek == 'draft'" widget="badge" optional="show"/>
@@ -27,7 +26,6 @@
                         <group>
                             <field name="name"/>
                             <field name="lokasi_proyek"/>
-                            <field name="anggaran_proyek"/>
                             <field name="tanggal_mulai"/>
                             <field name="tanggal_selesai"/>
                             <field name="status_proyek"/>
@@ -43,6 +41,7 @@
                                         <field name="tanggal_selesai"/>
                                         <field name="status_tugas" decoration-success="status_tugas == 'completed'" decoration-warning="status_tugas == 'ongoing'" decoration-muted="status_tugas == 'draft'" widget="badge" optional="show"/>
                                         <field name="id_manajer_tugas"/>
+                                        <button name="get_formview_action" type="object" icon="fa-eye"/>
                                     </tree>
                                 </field>
                             </page>
@@ -53,6 +52,8 @@
                                         <field name="kategori_anggaran"/>
                                         <field name="jumlah_anggaran"/>
                                         <field name="tanggal_pembuatan_anggaran"/>
+                                        <field name="create_uid"></field>
+                                        <button name="get_formview_action" type="object" icon="fa-eye"/>
                                     </tree>
                                 </field>
                                 <group>

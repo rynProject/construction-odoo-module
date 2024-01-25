@@ -12,7 +12,9 @@
         'views/menu_item.xml',
         'views/project_view.xml',
         'views/task_view.xml',
-        'views/budget_view.xml'
+        'views/budget_view.xml',
+        'views/expenditure_view.xml',
+        'views/progresnote_view.xml'
     ],
     'sequence': 0,
 }
