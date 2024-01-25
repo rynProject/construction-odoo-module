@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+
+        <!-- Budget Management Tree View -->
+        <record id="view_budget_management_tree" model="ir.ui.view">
+            <field name="name">budget.management.tree</field>
+            <field name="model">budget.management</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"></field>
+                    <field name="id_proyek"/>
+                    <field name="kategori_anggaran"/>
+                    <field name="jumlah_anggaran"/>
+                    <field name="tanggal_pembuatan_anggaran"/>
+                    <field name="create_uid"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Budget Management Form View -->
+        <record id="view_budget_management_form" model="ir.ui.view">
+            <field name="name">budget.management.form</field>
+            <field name="model">budget.management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"></field>
+                            <field name="id_proyek"/>
+                            <field name="kategori_anggaran"/>
+                            <field name="jumlah_anggaran"/>
+                            <field name="tanggal_pembuatan_anggaran"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action to Open the Budget Management List View -->
+        <record id="action_budget_management" model="ir.actions.act_window">
+            <field name="name">Budget Management</field>
+            <field name="res_model">budget.management</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_budget_management_tree"/>
+        </record>
+
+        <!-- Menu for Budget Management -->
+        <menuitem id="menu_budget_management_list" name="Budget List" parent="menu_project_management_root" action="action_budget_management"/>
+
+    </data>
+</odoo>

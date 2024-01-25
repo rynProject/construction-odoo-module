@@ -14,6 +14,7 @@
                     <field name="status_tugas" decoration-success="status_tugas == 'completed'" decoration-warning="status_tugas == 'ongoing'" decoration-muted="status_tugas == 'draft'" widget="badge" optional="show"/>
                     <field name="id_proyek"/>
                     <field name="id_manajer_tugas"/>
+                    <field name="create_uid"/>
                 </tree>
             </field>
         </record>

@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class Project(models.Model):
     _name = 'project.management'
@@ -17,3 +17,11 @@ class Project(models.Model):
     id_manajer_proyek = fields.Many2one('res.users', string='Project Manager', required=True)
 
     task_ids = fields.One2many(comodel_name='project.task', inverse_name='id_proyek', string='Task List')
+    budget_ids = fields.One2many(comodel_name='budget.management', inverse_name='id_proyek', string='Budget List')
+    
+    total_budget = fields.Integer(string='Total Budget', compute='_compute_total_budget', store=True)
+
+    @api.depends('budget_ids.jumlah_anggaran')
+    def _compute_total_budget(self):
+        for project in self:
+            project.total_budget = sum(budget.jumlah_anggaran for budget in project.budget_ids)

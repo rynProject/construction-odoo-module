@@ -37,7 +37,7 @@
                             <page string="Task List">
                                 <field name="task_ids" widget="one2many_list" options="{'editable': true}">
                                     <tree editable="bottom">
-                                        <field name="id_tugas"/>
+                                        <field name="name"/>
                                         <field name="deskripsi_tugas"/>
                                         <field name="tanggal_mulai"/>
                                         <field name="tanggal_selesai"/>
@@ -46,9 +46,18 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Resource List">
-                                <tree editable="bottom">
-                                </tree>
+                            <page string="Budget List">
+                                <field name="budget_ids" widget="one2many_list" options="{'editable': true}">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="kategori_anggaran"/>
+                                        <field name="jumlah_anggaran"/>
+                                        <field name="tanggal_pembuatan_anggaran"/>
+                                    </tree>
+                                </field>
+                                <group>
+                                    <field name="total_budget" readonly="1"/>
+                                </group>
                             </page>
                         </notebook>
                     </sheet>
