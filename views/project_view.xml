@@ -1,0 +1,72 @@
+<odoo>
+    <data>
+        <!-- Project Management Tree View -->
+        <record id="view_project_management_tree" model="ir.ui.view">
+            <field name="name">project.management.tree</field>
+            <field name="model">project.management</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="lokasi_proyek"/>
+                    <field name="anggaran_proyek"/>
+                    <field name="tanggal_mulai"/>
+                    <field name="tanggal_selesai"/>
+                    <field name="status_proyek" decoration-success="status_proyek == 'completed'" decoration-warning="status_proyek == 'ongoing'" decoration-muted="status_proyek == 'draft'" widget="badge" optional="show"/>
+                    <field name="id_manajer_proyek"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Project Management Form View -->
+        <record id="view_project_management_form" model="ir.ui.view">
+            <field name="name">project.management.form</field>
+            <field name="model">project.management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="lokasi_proyek"/>
+                            <field name="anggaran_proyek"/>
+                            <field name="tanggal_mulai"/>
+                            <field name="tanggal_selesai"/>
+                            <field name="status_proyek"/>
+                            <field name="id_manajer_proyek"/>
+                        </group>
+                        <notebook>
+                            <page string="Task List">
+                                <field name="task_ids" widget="one2many_list" options="{'editable': true}">
+                                    <tree editable="bottom">
+                                        <field name="id_tugas"/>
+                                        <field name="deskripsi_tugas"/>
+                                        <field name="tanggal_mulai"/>
+                                        <field name="tanggal_selesai"/>
+                                        <field name="status_tugas" decoration-success="status_tugas == 'completed'" decoration-warning="status_tugas == 'ongoing'" decoration-muted="status_tugas == 'draft'" widget="badge" optional="show"/>
+                                        <field name="id_manajer_tugas"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Resource List">
+                                <tree editable="bottom">
+                                </tree>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action to Open the Project Management List View -->
+        <record id="action_project_management" model="ir.actions.act_window">
+            <field name="name">Project Management</field>
+            <field name="res_model">project.management</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_project_management_tree"/>
+        </record>
+
+        <!-- Menu for Project Management -->
+        <menuitem id="menu_project_management_root" name="Project Management" parent="menu_construction"/>
+        <menuitem id="menu_project_management_list" name="Project List" parent="menu_project_management_root" action="action_project_management"/>
+
+    </data>
+</odoo>
