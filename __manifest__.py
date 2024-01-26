@@ -9,6 +9,7 @@
     'depends': ['base'],
     "application": True,
     "data": [
+        'security/ir.model.access.csv',
         'views/menu_item.xml',
         'views/project_view.xml',
         'views/task_view.xml',
