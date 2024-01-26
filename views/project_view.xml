@@ -103,6 +103,24 @@
                                     </div>
                                 </group>
                             </page>
+                            <page string="Change In Plan">
+                                <field name="changeinplan_ids" widget="one2many_list" options="{'editable': true}">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="change_description"/>
+                                        <field name="change_date"/>
+                                        <field name="cost_impact"/>
+                                        <button name="get_formview_action" type="object" icon="fa-eye"/>
+                                    </tree>
+                                </field>
+                                <group>
+                                    <div class="oe_title">
+                                        <h1>
+                                            <field name="total_impact_cost" readonly="1" options="{'widget': 'handle'}"/>
+                                        </h1>
+                                    </div>
+                                </group>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>

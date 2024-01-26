@@ -1,0 +1,58 @@
+<!-- construction_permit_views.xml -->
+
+<odoo>
+    <data>
+
+        <!-- Construction Permit Tree View -->
+        <record id="view_construction_permit_tree" model="ir.ui.view">
+            <field name="name">construction.permit.tree</field>
+            <field name="model">construction.permit</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="project_id"/>
+                    <field name="applicant_name"/>
+                    <field name="permit_type"/>
+                    <field name="permit_status"/>
+                    <field name="submission_date"/>
+                    <field name="approval_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Construction Permit Form View -->
+        <record id="view_construction_permit_form" model="ir.ui.view">
+            <field name="name">construction.permit.form</field>
+            <field name="model">construction.permit</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="project_id"/>
+                                <field name="applicant_name"/>
+                                <field name="permit_type"/>
+                                <field name="permit_status"/>
+                                <field name="submission_date"/>
+                                <field name="approval_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action to Open the Construction Permit List View -->
+        <record id="action_construction_permit" model="ir.actions.act_window">
+            <field name="name">Construction Permits</field>
+            <field name="res_model">construction.permit</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_construction_permit_tree"/>
+        </record>
+
+        <!-- Menu for Construction Permits -->
+        <menuitem id="menu_construction_permits" name="Construction Permits" parent="menu_permit_root" action="action_construction_permit"/>
+
+    </data>
+</odoo>

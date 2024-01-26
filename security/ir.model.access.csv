@@ -9,3 +9,5 @@ access_purchase_user,purchase user access,model_construction_purchase,base.group
 access_worker_user,worker user access,model_construction_worker,base.group_user,1,1,1,1
 access_equipment_user,equipment user access,model_construction_equipment,base.group_user,1,1,1,1
 access_evaluation_user,evaluation user access,model_evaluation,base.group_user,1,1,1,1
+access_changeinplanning_user,changeinplanning user access,model_construction_changeinplanning,base.group_user,1,1,1,1
+access_permit_user,permit user access,model_construction_permit,base.group_user,1,1,1,1

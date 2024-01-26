@@ -21,6 +21,8 @@
         'views/worker_view.xml',
         'views/equipment_view.xml',
         'views/evaluation_view.xml',
+        'views/changeinplanning_view.xml',
+        'views/permit_view.xml',
     ],
     'sequence': 0,
 }

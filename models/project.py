@@ -20,12 +20,14 @@ class Project(models.Model):
     task_ids = fields.One2many(comodel_name='construction.task', inverse_name='id_proyek', string='Task List')
     budget_ids = fields.One2many(comodel_name='construction.budget', inverse_name='id_proyek', string='Budget List')
     expenditure_ids = fields.One2many(comodel_name='construction.expenditure', inverse_name='id_proyek', string='Expenditures')
+    changeinplan_ids = fields.One2many(comodel_name='construction.changeinplanning', inverse_name='project_id', string='Change in Plans')
 
     latitude = fields.Float(string='Latitude', digits=(8, 6))
     longitude = fields.Float(string='Longitude', digits=(9, 6))
     
     total_budget = fields.Integer(string='Total Budget', compute='_compute_total_budget', store=True)
     total_expenditure = fields.Integer(string='Total Expenditure', compute='_compute_total_expenditure', store=True)
+    total_impact_cost = fields.Float(string='Total Impact Cost', compute='_compute_total_impact_cost', store=True)
 
     @api.depends('name')
     def _compute_ref(self):
@@ -52,3 +54,8 @@ class Project(models.Model):
     def _compute_total_expenditure(self):
         for project in self:
             project.total_expenditure = sum(expenditure.jumlah_pengeluaran for expenditure in project.expenditure_ids)
+    
+    @api.depends('changeinplan_ids.cost_impact')
+    def _compute_total_impact_cost(self):
+        for project in self:
+            project.total_impact_cost = sum(change.cost_impact for change in project.changeinplan_ids)

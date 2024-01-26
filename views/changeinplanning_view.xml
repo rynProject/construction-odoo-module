@@ -1,0 +1,47 @@
+<!-- Your Module's views XML file -->
+<odoo>
+    <!-- Tree View -->
+    <record id="view_change_in_planning_tree" model="ir.ui.view">
+        <field name="name">construction.changeinplanning.tree</field>
+        <field name="model">construction.changeinplanning</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref"/>
+                <field name="project_id"/>
+                <field name="change_description"/>
+                <field name="change_date"/>
+                <field name="cost_impact"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_change_in_planning_form" model="ir.ui.view">
+        <field name="name">change.in.planning.form</field>
+        <field name="model">construction.changeinplanning</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="ref"/>
+                        <field name="project_id"/>
+                        <field name="change_description"/>
+                        <field name="change_date"/>
+                        <field name="cost_impact"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open Tree View -->
+    <record id="action_change_in_planning" model="ir.actions.act_window">
+        <field name="name">Change in Planning</field>
+        <field name="res_model">construction.changeinplanning</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_change_in_planning_tree"/>
+    </record>
+
+    <!-- Menu for Change in Planning -->
+    <menuitem id="menu_change_in_planning" name="Change in Planning" parent="menu_project_management_root" action="action_change_in_planning"/>
+</odoo>

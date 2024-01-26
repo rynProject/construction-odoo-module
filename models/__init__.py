@@ -8,3 +8,5 @@ from . import purchase
 from . import worker
 from . import equipment
 from . import evaluation
+from . import changeinplanning
+from . import permit
