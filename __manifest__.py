@@ -18,6 +18,7 @@
         'views/materials_view.xml',
         'views/purchase_view.xml',
         'views/worker_view.xml',
+        'views/equipment_view.xml',
     ],
     'sequence': 0,
 }

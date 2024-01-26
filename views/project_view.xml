@@ -77,7 +77,11 @@
                                     </tree>
                                 </field>
                                 <group>
-                                    <field name="total_budget" readonly="1"/>
+                                    <div class="oe_title">
+                                        <h1>
+                                            <field name="total_budget" readonly="1" options="{'widget': 'handle'}"/>
+                                        </h1>
+                                    </div>
                                 </group>
                             </page>
                         </notebook>

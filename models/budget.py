@@ -19,13 +19,15 @@ class Budget(models.Model):
 
     material_line_ids = fields.One2many('construction.budget.material.line', 'budget_id', string='Material Lines')
     worker_line_ids = fields.One2many('construction.budget.worker.line', 'budget_id', string='Worker Lines')
+    equipment_line_ids = fields.One2many('construction.budget.equipment.line', 'budget_id', string='Equipment Lines')
 
-    @api.depends('material_line_ids.total_amount', 'worker_line_ids.total_salary')
+    @api.depends('material_line_ids.total_amount', 'worker_line_ids.total_salary', 'equipment_line_ids.total_rent')
     def _compute_jumlah_anggaran(self):
         for rec in self:
             material_total = sum(rec.material_line_ids.mapped('total_amount'))
             worker_total = sum(rec.worker_line_ids.mapped('total_salary'))
-            total = material_total + worker_total
+            equipment_total = sum(rec.equipment_line_ids.mapped('total_rent'))
+            total = material_total + worker_total + equipment_total
             rec.jumlah_anggaran = total
 
     @api.onchange('kategori_anggaran')
@@ -34,14 +36,32 @@ class Budget(models.Model):
         if self.kategori_anggaran != 'materials':
             # Delete existing material records
             self.material_line_ids.unlink()
-            
+
+        # If kategori_anggaran is not 'worker', delete worker_line_ids and make it invisible
+        if self.kategori_anggaran != 'worker':
+            # Delete existing worker records
+            self.worker_line_ids.unlink()
+
+        # If kategori_anggaran is not 'equipment', delete equipment_line_ids and make it invisible
+        if self.kategori_anggaran != 'equipment':
+            # Delete existing equipment records
+            self.equipment_line_ids.unlink()
+
+    @api.model
+    def create(self, values):
+        # Call the original create method
+        budget = super(Budget, self).create(values)
+
+        # Additional logic for budget creation if needed
+
+        return budget
+
 
 class BudgetMaterialLine(models.Model):
     _name = 'construction.budget.material.line'
     _description = 'Budget Material Lines'
 
     material_id = fields.Many2one('construction.material', string='Material', required=True)
-
     quantity = fields.Integer(string='Quantity')
     average_price = fields.Float(related='material_id.average_price', string='average_price')
     total_amount = fields.Float(string='Total amount', compute='_compute_total_amount')
@@ -82,6 +102,7 @@ class BudgetMaterialLine(models.Model):
             logger.info(f"Unlinking BudgetMaterialLine {line.id}")
         return super(BudgetMaterialLine, self).unlink()
 
+
 class BudgetWorkerLine(models.Model):
     _name = 'construction.budget.worker.line'
     _description = 'Budget Worker Lines'
@@ -96,3 +117,41 @@ class BudgetWorkerLine(models.Model):
     def _compute_total_salary(self):
         for line in self:
             line.total_salary = line.days_worked * line.salary
+
+    def unlink(self):
+        # Add the total days worked back to the associated worker when deleting a BudgetWorkerLine
+        for line in self:
+            worker = line.worker_id
+            worker.write({
+                'total_days_worked': worker.total_days_worked + line.days_worked
+            })
+            self.env.cr.commit()  # Commit the transaction immediately
+            logger.info(f"Unlinking BudgetWorkerLine {line.id}")
+        return super(BudgetWorkerLine, self).unlink()
+
+
+class BudgetEquipmentLine(models.Model):
+    _name = 'construction.budget.equipment.line'
+    _description = 'Budget Equipment Lines'
+
+    equipment_id = fields.Many2one('construction.equipment', string='Equipment', required=True)
+    days_rented = fields.Integer(string='Days Rented')
+    rent_price = fields.Integer(related='equipment_id.rent_price', string='Rent Price')
+    total_rent = fields.Integer(string='Total Rent', compute='_compute_total_rent')
+    budget_id = fields.Many2one('construction.budget', string='Budget')
+
+    @api.depends('days_rented', 'rent_price')
+    def _compute_total_rent(self):
+        for line in self:
+            line.total_rent = line.days_rented * line.rent_price
+
+    def unlink(self):
+        # Add the total days rented back to the associated equipment when deleting a BudgetEquipmentLine
+        for line in self:
+            equipment = line.equipment_id
+            equipment.write({
+                'total_days_rented': equipment.total_days_rented + line.days_rented
+            })
+            self.env.cr.commit()  # Commit the transaction immediately
+            logger.info(f"Unlinking BudgetEquipmentLine {line.id}")
+        return super(BudgetEquipmentLine, self).unlink()

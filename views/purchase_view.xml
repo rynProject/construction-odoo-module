@@ -13,6 +13,7 @@
                             <field name="quantity"/>
                             <field name="price"/>
                             <field name="purchase_date"/>
+                            <field name="attachment_ids" widget="pdf_viewer"/>
                         </group>
                     </sheet>
                 </form>

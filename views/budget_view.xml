@@ -46,6 +46,14 @@
                                     <field name="total_salary"/>
                                 </tree>
                             </field>
+                            <field name="equipment_line_ids" attrs="{'invisible': [('kategori_anggaran', '!=', 'equipment')]}" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <field name="equipment_id"/>
+                                    <field name="days_rented"/>
+                                    <field name="rent_price"/>
+                                    <field name="total_rent"/>
+                                </tree>
+                            </field>
                         </group>
                     </sheet>
                 </form>

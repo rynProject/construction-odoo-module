@@ -13,6 +13,8 @@ class Purchase(models.Model):
     purchase_date = fields.Date(string='Purchase Date', required=True, default=fields.Date.today())
     create_uid = fields.Many2one('res.users', string='Created By', required=True)
 
+    attachment_ids = fields.Binary(string='Attachments')
+
     @api.model
     def _get_next_invoice_number(self):
         # Generate the next invoice number based on the current date and an auto-incrementing number

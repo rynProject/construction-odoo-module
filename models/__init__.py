@@ -6,3 +6,4 @@ from . import progressnote
 from . import materials
 from . import purchase
 from . import worker
+from . import equipment

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Construction Equipment Form View -->
+        <record id="view_construction_equipment_form" model="ir.ui.view">
+            <field name="name">construction.equipment.form</field>
+            <field name="model">construction.equipment</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="capacity"/>
+                                <field name="availability"/>
+                            </group>
+                            <group>
+                                <field name="total_unit"/>
+                                <field name="rent_price"/>
+                                <field name="vendor"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Construction Equipment Tree View -->
+        <record id="view_construction_equipment_tree" model="ir.ui.view">
+            <field name="name">construction.equipment.tree</field>
+            <field name="model">construction.equipment</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="capacity"/>
+                    <field name="availability"/>
+                    <field name="total_unit"/>
+                    <field name="rent_price"/>
+                    <field name="vendor"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Construction Equipment Action -->
+        <record id="action_construction_equipment" model="ir.actions.act_window">
+            <field name="name">Construction Equipment</field>
+            <field name="res_model">construction.equipment</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Construction Equipment Menu Action -->
+        <menuitem id="menu_construction_equipment_action" name="Equipment" action="action_construction_equipment" parent="menu_resource_root"/>
+
+    </data>
+</odoo>
