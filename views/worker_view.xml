@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+
+        <!-- Worker Management Tree View -->
+        <record id="view_worker_tree" model="ir.ui.view">
+            <field name="name">construction.worker.tree</field>
+            <field name="model">construction.worker</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="position"/>
+                    <field name="salary"/>
+                    <!-- <field name="project_ids"/> -->
+                </tree>
+            </field>
+        </record>
+
+        <!-- Worker Management Form View -->
+        <record id="view_worker_form" model="ir.ui.view">
+            <field name="name">construction.worker.form</field>
+            <field name="model">construction.worker</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="position"/>
+                            <field name="salary"/>
+                            <!-- <field name="project_ids"/> -->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action to Open the Worker Management List View -->
+        <record id="action_worker" model="ir.actions.act_window">
+            <field name="name">Worker Management</field>
+            <field name="res_model">construction.worker</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_worker_tree"/>
+        </record>
+
+        <!-- Menu for Worker Management -->
+        <menuitem id="menu_worker" name="Worker Management" parent="menu_resource_root" action="action_worker"/>
+
+    </data>
+</odoo>

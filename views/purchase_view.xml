@@ -31,6 +31,7 @@
                     <field name="price"/>
                     <field name="total"/>
                     <field name="purchase_date"/>
+                    <field name="create_uid"></field>
                 </tree>
             </field>
         </record>

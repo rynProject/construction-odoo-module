@@ -30,12 +30,20 @@
                             <field name="kategori_anggaran"/>
                             <field name="jumlah_anggaran"/>
                             <field name="tanggal_pembuatan_anggaran"/>
-                            <field name="material_line_ids" widget="one2many_list">
+                            <field name="material_line_ids" attrs="{'invisible': [('kategori_anggaran', '!=', 'materials')]}" widget="one2many_list">
                                 <tree editable="bottom">
                                     <field name="material_id"/>
                                     <field name="quantity"/>
                                     <field name="average_price"/>
                                     <field name="total_amount"/>
+                                </tree>
+                            </field>
+                            <field name="worker_line_ids" attrs="{'invisible': [('kategori_anggaran', '!=', 'worker')]}" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <field name="worker_id"/>
+                                    <field name="days_worked"/>
+                                    <field name="salary"/>
+                                    <field name="total_salary"/>
                                 </tree>
                             </field>
                         </group>

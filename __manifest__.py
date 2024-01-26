@@ -17,6 +17,7 @@
         'views/progresnote_view.xml',
         'views/materials_view.xml',
         'views/purchase_view.xml',
+        'views/worker_view.xml',
     ],
     'sequence': 0,
 }
