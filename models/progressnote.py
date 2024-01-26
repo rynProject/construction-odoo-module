@@ -9,3 +9,4 @@ class ProgressNote(models.Model):
     catatan_kemajuan = fields.Text(string='Catatan Kemajuan')
     tanggal_pembuatan_catatan = fields.Date(string='Tanggal Pembuatan Catatan')
     create_uid = fields.Many2one('res.users', string='Created By', required=True)
+    attachment = fields.Binary(string='Attachment', attachment=True, help='Attach a picture here.')

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Define the form view for construction.purchase model -->
+        <record id="view_purchase_form" model="ir.ui.view">
+            <field name="name">construction.purchase.form</field>
+            <field name="model">construction.purchase</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="material_id"/>
+                            <field name="quantity"/>
+                            <field name="price"/>
+                            <field name="purchase_date"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Define the tree view for construction.purchase model -->
+        <record id="view_purchase_tree" model="ir.ui.view">
+            <field name="name">construction.purchase.tree</field>
+            <field name="model">construction.purchase</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="material_id"/>
+                    <field name="quantity"/>
+                    <field name="price"/>
+                    <field name="total"/>
+                    <field name="purchase_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Define the action for the tree view -->
+        <record id="action_purchase_tree" model="ir.actions.act_window">
+            <field name="name">Purchase Orders</field>
+            <field name="res_model">construction.purchase</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id"/>
+        </record>
+
+        <!-- Define a menu item to access the tree view -->
+        <menuitem id="menu_purchase" name="Purchase" parent="menu_resource_root" action="action_purchase_tree"/>
+    </data>
+</odoo>

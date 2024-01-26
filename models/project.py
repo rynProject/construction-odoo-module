@@ -5,7 +5,7 @@ class Project(models.Model):
     _description = 'Project Management'
 
     name = fields.Char(string='Project Name', required=True)
-    lokasi_proyek = fields.Char(string='Location')
+    client = fields.Many2one(comodel_name='res.partner', string='Client')
     tanggal_mulai = fields.Date(string='Start Date')
     tanggal_selesai = fields.Date(string='End Date')
     status_proyek = fields.Selection([
@@ -17,6 +17,9 @@ class Project(models.Model):
 
     task_ids = fields.One2many(comodel_name='construction.task', inverse_name='id_proyek', string='Task List')
     budget_ids = fields.One2many(comodel_name='construction.budget', inverse_name='id_proyek', string='Budget List')
+
+    latitude = fields.Float(string='Latitude', digits=(8, 6))
+    longitude = fields.Float(string='Longitude', digits=(9, 6))
     
     total_budget = fields.Integer(string='Total Budget', compute='_compute_total_budget', store=True)
 

@@ -1,4 +1,10 @@
 <odoo>
     <menuitem id="menu_construction" name="Construction"/>
 
+    <menuitem id="menu_project_management_root" name="Project Management" parent="menu_construction"/>
+
+    <menuitem id="menu_budget_root" name="Budget" parent="menu_construction"/>
+
+    <menuitem id="menu_resource_root" name="Resource" parent="menu_construction"/>
+
 </odoo>

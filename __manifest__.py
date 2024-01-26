@@ -14,7 +14,9 @@
         'views/task_view.xml',
         'views/budget_view.xml',
         'views/expenditure_view.xml',
-        'views/progresnote_view.xml'
+        'views/progresnote_view.xml',
+        'views/materials_view.xml',
+        'views/purchase_view.xml',
     ],
     'sequence': 0,
 }

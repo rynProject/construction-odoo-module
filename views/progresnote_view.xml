@@ -12,6 +12,7 @@
                     <field name="catatan_kemajuan"/>
                     <field name="tanggal_pembuatan_catatan"/>
                     <field name="create_uid"/>
+                    <field name="attachment" widget='image'></field>
                 </tree>
             </field>
         </record>
@@ -24,10 +25,15 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="id_proyek"/>
-                            <field name="catatan_kemajuan"/>
-                            <field name="tanggal_pembuatan_catatan"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="id_proyek"/>
+                                <field name="catatan_kemajuan"/>
+                                <field name="tanggal_pembuatan_catatan"/>
+                            </group>
+                            <group>
+                                <field name="attachment" widget='image'></field>
+                            </group>
                         </group>
                     </sheet>
                 </form>
@@ -43,7 +49,7 @@
         </record>
 
         <!-- Menu for Progress Note -->
-        <menuitem id="menu_progress_note_list" name="Progress Note List" parent="menu_project_management_root" action="action_progress_note"/>
+        <menuitem id="menu_progress_note_list" name="Progress Note" parent="menu_project_management_root" action="action_progress_note"/>
 
     </data>
 </odoo>

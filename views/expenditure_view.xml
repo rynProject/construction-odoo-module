@@ -45,7 +45,7 @@
         </record>
 
         <!-- Menu for Expenditure Management -->
-        <menuitem id="menu_expenditure_management_list" name="Expenditure List" parent="menu_project_management_root" action="action_expenditure_management"/>
+        <menuitem id="menu_expenditure_management_list" name="Expenditure List" parent="menu_budget_root" action="action_expenditure_management"/>
 
     </data>
 </odoo>

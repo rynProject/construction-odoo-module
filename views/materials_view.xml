@@ -1,0 +1,54 @@
+<!-- construction_management/views/material_views.xml -->
+<odoo>
+    <!-- Tree View -->
+    <record id="view_material_tree" model="ir.ui.view">
+        <field name="name">construction.material.tree</field>
+        <field name="model">construction.material</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="available_stock"/>
+                <field name="average_price"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_material_form" model="ir.ui.view">
+        <field name="name">construction.material.form</field>
+        <field name="model">construction.material</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="available_stock"/>
+                        <field name="average_price" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="purchase_ids" widget="one2many_list">
+                            <tree>
+                                <field name="name"/>
+                                <field name="price"/>
+                                <field name="quantity"/>
+                                <!-- Add more fields as needed for the construction.purchase model -->
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open Tree View -->
+    <record id="action_materials" model="ir.actions.act_window">
+        <field name="name">Materials</field>
+        <field name="res_model">construction.material</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_material_tree"/>
+    </record>
+
+    <!-- Menu for Progress Note -->
+    <menuitem id="menu_materials" name="Materials" parent="menu_resource_root" action="action_materials"/>
+
+</odoo>

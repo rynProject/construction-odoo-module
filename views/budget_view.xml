@@ -25,11 +25,19 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="name"></field>
+                            <field name="name"/>
                             <field name="id_proyek"/>
                             <field name="kategori_anggaran"/>
                             <field name="jumlah_anggaran"/>
                             <field name="tanggal_pembuatan_anggaran"/>
+                            <field name="material_line_ids" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <field name="material_id"/>
+                                    <field name="quantity"/>
+                                    <field name="average_price"/>
+                                    <field name="total_amount"/>
+                                </tree>
+                            </field>
                         </group>
                     </sheet>
                 </form>
@@ -45,7 +53,7 @@
         </record>
 
         <!-- Menu for Budget Management -->
-        <menuitem id="menu_budget_management_list" name="Budget List" parent="menu_project_management_root" action="action_budget_management"/>
+        <menuitem id="menu_budget_management_list" name="Budget List" parent="menu_budget_root" action="action_budget_management"/>
 
     </data>
 </odoo>

@@ -7,7 +7,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
-                    <field name="lokasi_proyek"/>
+                    <field name="client"/>
                     <field name="tanggal_mulai"/>
                     <field name="tanggal_selesai"/>
                     <field name="status_proyek" decoration-success="status_proyek == 'completed'" decoration-warning="status_proyek == 'ongoing'" decoration-muted="status_proyek == 'draft'" widget="badge" optional="show"/>
@@ -24,12 +24,32 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="lokasi_proyek"/>
-                            <field name="tanggal_mulai"/>
-                            <field name="tanggal_selesai"/>
-                            <field name="status_proyek"/>
-                            <field name="id_manajer_proyek"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="client"/>
+                                <field name="tanggal_mulai"/>
+                                <field name="tanggal_selesai"/>
+                                <field name="status_proyek"></field>
+                                <field name="id_manajer_proyek"/>
+                                <field name="latitude"/>
+                                <field name="longitude"/>
+                            </group>
+                            <group>
+                                <div id="googleMap" style="width:550px;height:300px;"></div>
+
+                                <script>
+                                function myMap() {
+                                var mapProp= {
+                                center:new google.maps.LatLng(51.508742,-0.120850),
+                                zoom:5,
+                                };
+                                var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                                }
+                                </script>
+
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6QG-pqKptJ0G8pPfo2Ndxc2q4cHctT0E&amp;callback=myMap"></script>
+
+                            </group>
                         </group>
                         <notebook>
                             <page string="Task List">
@@ -75,8 +95,7 @@
         </record>
 
         <!-- Menu for Project Management -->
-        <menuitem id="menu_project_management_root" name="Project Management" parent="menu_construction"/>
-        <menuitem id="menu_project_management_list" name="Project List" parent="menu_project_management_root" action="action_project_management"/>
+        <menuitem id="menu_project_management_list" name="Project" parent="menu_project_management_root" action="action_project_management"/>
 
     </data>
 </odoo>
