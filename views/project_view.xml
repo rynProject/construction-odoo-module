@@ -48,7 +48,7 @@
                                 }
                                 </script>
 
-                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6QG-pqKptJ0G8pPfo2Ndxc2q4cHctT0E&amp;callback=myMap"></script>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&amp;callback=myMap"></script>
 
                             </group>
                         </group>
