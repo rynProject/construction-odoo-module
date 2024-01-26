@@ -25,11 +25,16 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="id_proyek"/>
-                            <field name="deskripsi_pengeluaran"/>
-                            <field name="jumlah_pengeluaran"/>
-                            <field name="tanggal_pengeluaran"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="id_proyek"/>
+                                <field name="deskripsi_pengeluaran"/>
+                                <field name="jumlah_pengeluaran"/>
+                                <field name="tanggal_pengeluaran"/>
+                            </group>
+                            <group>
+                                <field name="attachment" widget='pdf_viewer'></field>
+                            </group>
                         </group>
                     </sheet>
                 </form>

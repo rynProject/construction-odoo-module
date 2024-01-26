@@ -10,3 +10,5 @@ class Expenditure(models.Model):
     jumlah_pengeluaran = fields.Float(string='Jumlah Pengeluaran')
     tanggal_pengeluaran = fields.Date(string='Tanggal Pengeluaran')
     create_uid = fields.Many2one('res.users', string='Created By', required=True)
+
+    attachment = fields.Binary(string='Attachment', attachment=True)

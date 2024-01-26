@@ -7,3 +7,4 @@ from . import materials
 from . import purchase
 from . import worker
 from . import equipment
+from . import evaluation

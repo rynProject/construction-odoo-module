@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_construction_budget,Budget,model_construction_budget,base.group_user,1,1,1,1
+access_construction_equipment,Equipment,model_construction_equipment,base.group_user,1,1,1,1
+access_construction_evaluation,Evaluation,model_construction_evaluation,base.group_user,1,1,1,1
+access_construction_expenditure,Expenditure,model_construction_expenditure,base.group_user,1,1,1,1
+access_construction_materials,Materials,model_construction_materials,base.group_user,1,1,1,1
+access_construction_progressnote,Progress Note,model_construction_progressnote,base.group_user,1,1,1,1
+access_construction_project,Project,model_construction_project,base.group_user,1,1,1,1
+access_construction_purchase,Purchase,model_construction_purchase,base.group_user,1,1,1,1
+access_construction_task,Task,model_construction_task,base.group_user,1,1,1,1
+access_construction_worker,Worker,model_construction_worker,base.group_user,1,1,1,1

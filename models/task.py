@@ -17,4 +17,5 @@ class Task(models.Model):
     id_manajer_tugas = fields.Many2one('res.users', string='Task Manager', required=True)
     create_uid = fields.Many2one('res.users', string='Created By', readonly=True)
 
-    
+    # Add evaluation_ids One2many field
+    evaluation_ids = fields.One2many('evaluation', 'id_tugas', string='Evaluations')

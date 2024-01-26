@@ -7,4 +7,6 @@
 
     <menuitem id="menu_resource_root" name="Resource" parent="menu_construction"/>
 
+    <menuitem id="menu_evaluations_root" name="Evaluations" parent="menu_construction"/>
+
 </odoo>

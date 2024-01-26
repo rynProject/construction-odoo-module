@@ -1,55 +1,68 @@
+<!-- construction_management/views/task_views.xml -->
 <odoo>
-    <data>
+    <!-- Tree View -->
+    <record id="view_task_tree" model="ir.ui.view">
+        <field name="name">construction.task.tree</field>
+        <field name="model">construction.task</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="status_tugas"/>
+                <field name="id_proyek"/>
+                <field name="id_manajer_tugas"/>
+                <field name="create_uid"/>
+                <field name="evaluation_ids" widget="one2many_list">
+                    <tree>
+                        <field name="penilaian_kinerja"/>
+                        <field name="komentar_evaluasi"/>
+                        <field name="tanggal_evaluasi"/>
+                        <!-- Add more fields as needed for the evaluation model -->
+                    </tree>
+                </field>
+            </tree>
+        </field>
+    </record>
 
-        <!-- Project Task Tree View -->
-        <record id="view_project_task_tree" model="ir.ui.view">
-            <field name="name">construction.task.tree</field>
-            <field name="model">construction.task</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="name"/>
-                    <field name="deskripsi_tugas"/>
-                    <field name="tanggal_mulai"/>
-                    <field name="tanggal_selesai"/>
-                    <field name="status_tugas" decoration-success="status_tugas == 'completed'" decoration-warning="status_tugas == 'ongoing'" decoration-muted="status_tugas == 'draft'" widget="badge" optional="show"/>
-                    <field name="id_proyek"/>
-                    <field name="id_manajer_tugas"/>
-                    <field name="create_uid"/>
-                </tree>
-            </field>
-        </record>
+    <!-- Form View -->
+    <record id="view_task_form" model="ir.ui.view">
+        <field name="name">construction.task.form</field>
+        <field name="model">construction.task</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="deskripsi_tugas"/>
+                        <field name="tanggal_mulai"/>
+                        <field name="tanggal_selesai"/>
+                        <field name="status_tugas"/>
+                        <field name="id_proyek"/>
+                        <field name="id_manajer_tugas"/>
+                    </group>
+                    <group>
+                        <field name="evaluation_ids" widget="one2many_list">
+                            <tree>
+                                <field name="penilaian_kinerja"/>
+                                <field name="komentar_evaluasi"/>
+                                <field name="tanggal_evaluasi"/>
+                                <!-- Add more fields as needed for the evaluation model -->
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <!-- Project Task Form View -->
-        <record id="view_project_task_form" model="ir.ui.view">
-            <field name="name">construction.task.form</field>
-            <field name="model">construction.task</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <field name="name"/>
-                            <field name="deskripsi_tugas"/>
-                            <field name="tanggal_mulai"/>
-                            <field name="tanggal_selesai"/>
-                            <field name="status_tugas"></field>
-                            <field name="id_proyek"/>
-                            <field name="id_manajer_tugas"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+    <!-- Action to Open Tree View -->
+    <record id="action_tasks" model="ir.actions.act_window">
+        <field name="name">Tasks</field>
+        <field name="res_model">construction.task</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_task_tree"/>
+    </record>
 
-        <!-- Action to Open the Project Task List View -->
-        <record id="action_project_task" model="ir.actions.act_window">
-            <field name="name">Project Task</field>
-            <field name="res_model">construction.task</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_project_task_tree"/>
-        </record>
+    <!-- Menu for Tasks -->
+    <menuitem id="menu_tasks" name="Tasks" parent="menu_project_management_root" action="action_tasks"/>
 
-        <!-- Menu for Project Task -->
-        <menuitem id="menu_project_task_list" name="Task" parent="menu_project_management_root" action="action_project_task"/>
-
-    </data>
 </odoo>

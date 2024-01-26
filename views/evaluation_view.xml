@@ -1,0 +1,53 @@
+<!-- evaluation/views/evaluation_views.xml -->
+<odoo>
+    <!-- Tree View -->
+    <record id="view_evaluation_tree" model="ir.ui.view">
+        <field name="name">evaluation.tree</field>
+        <field name="model">evaluation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="id_tugas"/>
+                <field name="penilaian_kinerja"/>
+                <field name="tanggal_evaluasi"/>
+                <field name="attachment" widget='image'/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_evaluation_form" model="ir.ui.view">
+        <field name="name">evaluation.form</field>
+        <field name="model">evaluation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="id_tugas"/>
+                            <field name="penilaian_kinerja"/>
+                            <field name="tanggal_evaluasi"/>
+                            <field name="komentar_evaluasi"/>
+                        </group>
+                        <group>
+                            <field name="attachment" widget='image'/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open Tree View -->
+    <record id="action_evaluations" model="ir.actions.act_window">
+        <field name="name">Evaluations</field>
+        <field name="res_model">evaluation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_evaluation_tree"/>
+    </record>
+
+    <!-- Menu for Evaluations -->
+    <menuitem id="menu_evaluations" name="Evaluations" parent="menu_evaluations_root" action="action_evaluations"/>
+
+</odoo>

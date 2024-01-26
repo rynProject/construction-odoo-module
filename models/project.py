@@ -1,9 +1,11 @@
 from odoo import models, fields, api
+from datetime import datetime
 
 class Project(models.Model):
     _name = 'construction.project'
     _description = 'Project Management'
 
+    ref = fields.Char(string='Ref', compute='_compute_ref', store=True)
     name = fields.Char(string='Project Name', required=True)
     client = fields.Many2one(comodel_name='res.partner', string='Client')
     tanggal_mulai = fields.Date(string='Start Date')
@@ -17,13 +19,36 @@ class Project(models.Model):
 
     task_ids = fields.One2many(comodel_name='construction.task', inverse_name='id_proyek', string='Task List')
     budget_ids = fields.One2many(comodel_name='construction.budget', inverse_name='id_proyek', string='Budget List')
+    expenditure_ids = fields.One2many(comodel_name='construction.expenditure', inverse_name='id_proyek', string='Expenditures')
 
     latitude = fields.Float(string='Latitude', digits=(8, 6))
     longitude = fields.Float(string='Longitude', digits=(9, 6))
     
     total_budget = fields.Integer(string='Total Budget', compute='_compute_total_budget', store=True)
+    total_expenditure = fields.Integer(string='Total Expenditure', compute='_compute_total_expenditure', store=True)
 
+    @api.depends('name')
+    def _compute_ref(self):
+        for project in self:
+            if project.name:
+                current_date = datetime.now().strftime("%Y%m%d")
+                ref_prefix = 'PROJECT'
+                existing_refs = project.search([('ref', 'like', f'{ref_prefix}{current_date}%')])
+
+                if existing_refs:
+                    latest_ref = max(existing_refs.mapped('ref'))
+                    sequence_number = int(latest_ref[len(ref_prefix) + len(current_date):]) + 1
+                else:
+                    sequence_number = 1
+
+                project.ref = f'{ref_prefix}{current_date}{sequence_number:04d}'
+    
     @api.depends('budget_ids.jumlah_anggaran')
     def _compute_total_budget(self):
         for project in self:
             project.total_budget = sum(budget.jumlah_anggaran for budget in project.budget_ids)
+
+    @api.depends('expenditure_ids.jumlah_pengeluaran')
+    def _compute_total_expenditure(self):
+        for project in self:
+            project.total_expenditure = sum(expenditure.jumlah_pengeluaran for expenditure in project.expenditure_ids)
