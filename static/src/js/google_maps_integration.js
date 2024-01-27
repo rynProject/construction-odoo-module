@@ -1,57 +1,64 @@
-odoo.define('your_module_name.project_form', function (require) {
-    "use strict";
+var map;
+var geocoder;
+var marker = null;
 
-    var core = require('web.core');
-    var FormView = require('web.FormView');
-    var rpc = require('web.rpc');
+function initialize() {
+    var defaultLatitude = document.getElementById("latitude").value;
+    var defaultLongitude = document.getElementById("longitude").value;
 
-    var _t = core._t;
+    if (defaultLatitude && defaultLongitude == 0) {
+        defaultLatitude = -7.786566449336038;
+        defaultLongitude = 110.39001459733059;
+    }
 
-    FormView.include({
-        map: null, // Store the map instance
+    var mapOptions = {
+        center: new google.maps.LatLng(defaultLatitude, defaultLongitude),
+        zoom: 15,
+        scrollwheel: true,
+        disableDefaultUI: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
 
-        render: function () {
-            this._super.apply(this, arguments);
-            this.$('.o_form_view').on('click', '.o_google_map_marker', this._onMapMarkerClick.bind(this));
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    geocoder = new google.maps.Geocoder();
 
-            // Add a click event listener to the map container
-            this.$('#googleMap').on('click', this._onMapClick.bind(this));
+    // Set the default marker
+    setMarker(new google.maps.LatLng(defaultLatitude, defaultLongitude));
 
-            // Initialize the map and store the instance
-            this.map = this._initMap();
-        },
+    map.addListener('click', function (e) {
+        setMarker(e.latLng);
 
-        _initMap: function () {
-            var mapProp = {
-                center: new google.maps.LatLng(51.508742, -0.120850),
-                zoom: 5,
-            };
-            return new google.maps.Map(document.getElementById("googleMap"), mapProp);
-        },
+        var latLng = e.latLng.toJSON();
+        console.log(latLng);
+        document.getElementById("latitude").value = latLng.lat;
+        document.getElementById("longitude").value = latLng.lng;
 
-        _onMapClick: function (ev) {
-            var map = this.map;
-            var latLng = ev.latLng;
-
-            // Create a marker at the clicked location
-            var marker = new google.maps.Marker({
-                position: latLng,
-                map: map,
-                title: 'New Marker',
-            });
-
-            // Update the latitude and longitude fields in the form
-            this.$('input[name="latitude"]').val(latLng.lat());
-            this.$('input[name="longitude"]').val(latLng.lng());
-        },
-
-        _onMapMarkerClick: function (ev) {
-            var $marker = $(ev.currentTarget);
-            var latitude = $marker.data('latitude');
-            var longitude = $marker.data('longitude');
-
-            // Do something with the marker information, e.g., show a popup or navigate to a related record.
-            // You can use Odoo's RPC to perform additional actions based on the marker information.
-        },
+        // Get address from clicked location
+        getAddress(e.latLng);
     });
-});
+
+    function setMarker(latLng) {
+        if (!marker) {
+            marker = new google.maps.Marker({
+                position: latLng,
+                map: map
+            });
+        } else {
+            marker.setPosition(latLng);
+        }
+    }
+
+    function getAddress(latLng) {
+        geocoder.geocode({ 'location': latLng }, function (results, status) {
+            if (status === 'OK') {
+                if (results[0]) {
+                    document.getElementById("lokasi").value = results[0].formatted_address;
+                } else {
+                    console.log('No results found');
+                }
+            } else {
+                console.log('Geocoder failed due to: ' + status);
+            }
+        });
+    }
+}

@@ -9,6 +9,8 @@
                     <field name="ref"/>
                     <field name="name"/>
                     <field name="client"/>
+                    <field name="lokasi"></field>
+                    <field name="lokasi"/>
                     <field name="tanggal_mulai"/>
                     <field name="tanggal_selesai"/>
                     <field name="status_proyek" decoration-success="status_proyek == 'completed'" decoration-warning="status_proyek == 'ongoing'" decoration-muted="status_proyek == 'draft'" widget="badge" optional="show"/>
@@ -28,6 +30,7 @@
                             <group>
                                 <field name="name"/>
                                 <field name="client"/>
+                                <field name="lokasi"></field>
                                 <field name="tanggal_mulai"/>
                                 <field name="tanggal_selesai"/>
                                 <field name="status_proyek"></field>
@@ -36,20 +39,9 @@
                                 <field name="longitude"/>
                             </group>
                             <group>
-                                <div id="googleMap" style="width:550px;height:300px;"></div>
-
-                                <script>
-                                function myMap() {
-                                var mapProp= {
-                                center:new google.maps.LatLng(51.508742,-0.120850),
-                                zoom:5,
-                                };
-                                var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                                }
-                                </script>
-
-                                <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&amp;callback=myMap"></script>
-
+                                <div id="map_canvas" style="width:550px;height:300px;"></div>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&amp;callback=initialize" async="async"></script>
+                                <script type="text/javascript" src="/construction/static/src/js/map_google_maps_integration.js"></script>
                             </group>
                         </group>
                         <notebook>

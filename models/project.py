@@ -21,7 +21,8 @@ class Project(models.Model):
     budget_ids = fields.One2many(comodel_name='construction.budget', inverse_name='id_proyek', string='Budget List')
     expenditure_ids = fields.One2many(comodel_name='construction.expenditure', inverse_name='id_proyek', string='Expenditures')
     changeinplan_ids = fields.One2many(comodel_name='construction.changeinplanning', inverse_name='project_id', string='Change in Plans')
-
+    
+    lokasi = fields.Char(string='Location')
     latitude = fields.Float(string='Latitude', digits=(8, 6))
     longitude = fields.Float(string='Longitude', digits=(9, 6))
     

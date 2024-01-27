@@ -23,6 +23,12 @@
         'views/evaluation_view.xml',
         'views/changeinplanning_view.xml',
         'views/permit_view.xml',
+        # 'views/map_only.xml',
     ],
     'sequence': 0,
+        'assets': {
+        'web.assets_backend': [
+            'construction/static/src/js/*.js'
+        ],
+    },
 }
