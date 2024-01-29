@@ -19,7 +19,6 @@ class Project(models.Model):
     ], string='Status Proyek', default='draft')
     id_manajer_proyek = fields.Many2one('res.users', string='Project Manager', required=True)
 
-    project_count = fields.Integer(string='Project Count', compute='_compute_project_count', store=True)
     task_ids = fields.One2many(comodel_name='construction.task', inverse_name='id_proyek', string='Task List')
     budget_ids = fields.One2many(comodel_name='construction.budget', inverse_name='id_proyek', string='Budget List')
     expenditure_ids = fields.One2many(comodel_name='construction.expenditure', inverse_name='id_proyek', string='Expenditures')
@@ -64,11 +63,6 @@ class Project(models.Model):
     def _compute_total_impact_cost(self):
         for project in self:
             project.total_impact_cost = sum(change.cost_impact for change in project.changeinplan_ids)
-
-    @api.depends('ref')
-    def _compute_project_count(self):
-        for project in self:
-            project.project_count = self.search_count([])
 
     def open_whatsapp_with_location(self):
         base_url = "https://wa.me/?"

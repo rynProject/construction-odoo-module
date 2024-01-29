@@ -181,7 +181,6 @@
                                 <table class="w3-table-all">
                                     <thead>
                                         <tr class="w3-yellow">
-                                            <th>Ref</th>
                                             <th>Name</th>
                                             <th>Progress Note</th>
                                             <th>Date</th>
@@ -191,9 +190,6 @@
                                     <tbody>
                                         <t t-foreach="project.progress_ids" t-as="progress">
                                             <tr>
-                                                <td>
-                                                    <span t-esc="progress.ref"/>
-                                                </td>
                                                 <td>
                                                     <span t-esc="progress.name"/>
                                                 </td>

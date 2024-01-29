@@ -6,15 +6,15 @@
             <field name="arch" type="xml">
                 <graph string="Dashboard">
                     <!-- Define your bar chart here -->
-                    <field name="status_proyek" type="row"/>
-                    <field name="project_count" type="measure"/>
+                    <field name="status_proyek" type="pie"/>
+                    <field name="name" type="pie"/>
                 </graph>
             </field>
         </record>
 
         <!-- Define the action for the bar chart -->
         <record id="action_construction_project_bar_chart" model="ir.actions.act_window">
-            <field name="name">Projects Bar Chart</field>
+            <field name="name">Dashboard</field>
             <field name="res_model">construction.project</field>
             <field name="view_mode">graph</field>
             <!-- Specify the Bar Chart view -->

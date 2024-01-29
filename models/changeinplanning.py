@@ -6,7 +6,7 @@ class ChangeInPlanning(models.Model):
     _description = 'Change in Planning'
 
     ref = fields.Char(string='Ref', compute='_compute_name', store=True)
-    name = fields.Char(string='Change ID')
+    name = fields.Char(string='Name')
     project_id = fields.Many2one('construction.project', string='Project ID', required=True)
     change_description = fields.Text(string='Change Description')
     change_date = fields.Date(string='Change Date')
@@ -18,6 +18,6 @@ class ChangeInPlanning(models.Model):
             if change.change_date:
                 date_str = change.change_date.strftime('%Y%m%d')
                 changes_today = self.search_count([('name', 'like', f'CHPLAN{date_str}')])
-                change.name = f'CHPLAN{date_str}{changes_today + 1:04d}'
+                change.ref = f'CHPLAN{date_str}{changes_today + 1:04d}'
             else:
-                change.name = False
+                change.ref = False
