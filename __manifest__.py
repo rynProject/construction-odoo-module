@@ -10,6 +10,11 @@
     "application": True,
     "data": [
         'security/ir.model.access.csv',
+        'report/report.xml',
+        'report/project_report.xml',
+        'report/budget_report.xml',
+        'wizard/purchase_report_wizard.xml',
+        'report/purchase_report_wizard.xml',
         'views/menu_item.xml',
         'views/project_view.xml',
         'views/task_view.xml',
@@ -23,7 +28,13 @@
         'views/evaluation_view.xml',
         'views/changeinplanning_view.xml',
         'views/permit_view.xml',
-        # 'views/map_only.xml',
+        'views/securityinspection_view.xml',
+        'views/maintenance_view.xml',
+        'views/dashboard_view.xml',
+    ],
+    'images': [
+        'static/src/img/logo.jpg',
+        'static/src/img/menu_icon.png'
     ],
     'sequence': 0,
         'assets': {

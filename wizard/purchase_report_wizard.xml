@@ -1,0 +1,36 @@
+<odoo>
+    <!-- doodex.reportpenjualanwz form view -->
+    <record id="doodex_purchasereportwz_view_form" model="ir.ui.view">
+        <field name="name">Purchase Report Wizard</field>
+        <field name="model">construction.purchasereportwz</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="dari_tgl"/>
+                        <field name="ke_tgl"/>
+                    </group>
+                    <footer>
+                        <button name="action_purchase_report" type="object" string="Print Report" class="btn btn-primary"/>
+                        <button string="Cancel" special="cancel" class="oe_link"/>
+
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- doodex.reportpenjualanwz action window -->
+    <record id="doodex_purchasereportwz_action" model="ir.actions.act_window">
+        <field name="name">Purchase Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">construction.purchasereportwz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="doodex_purchasereportwz_view_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="minimartdoodex_reportpenjualanwz_menu_act" name="Purchase Report" parent="menu_resource_root" action="doodex_purchasereportwz_action" sequence="15"/>
+
+</odoo>

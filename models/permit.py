@@ -18,7 +18,7 @@ class ConstructionPermit(models.Model):
         ('pending', 'Pending'),
         ('approved', 'Approved'),
         ('rejected', 'Rejected'),
-    ], string='Permit Status', default='pending', readonly=True)
+    ], string='Permit Status', default='pending')
     submission_date = fields.Date(string='Submission Date')
     approval_date = fields.Date(string='Approval Date')
 

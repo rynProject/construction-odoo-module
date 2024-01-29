@@ -10,3 +10,5 @@ from . import equipment
 from . import evaluation
 from . import changeinplanning
 from . import permit
+from . import securityinspection
+from . import maintenance

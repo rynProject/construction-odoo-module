@@ -1,6 +1,6 @@
 var map;
 var geocoder;
-var marker = null;
+var marker = 0;
 
 function initialize() {
     var defaultLatitude = document.getElementById("latitude").value;

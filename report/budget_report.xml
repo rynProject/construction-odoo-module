@@ -1,0 +1,145 @@
+<odoo>
+    <data>
+        <template id="report_construction_budget_pdf">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="budget">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+
+                            <!-- Report Header -->
+                            <div class="report-header">
+                                <h1 class="report-title">Budget Report</h1>
+                                <div class="info-container">
+                                    <div class="info-column">
+                                        <strong>Name:</strong>
+                                        <span t-field="budget.name"/>
+                                    </div>
+                                    <div class="info-column">
+                                        <strong>Project:</strong>
+                                        <span t-field="budget.id_proyek.name"/>
+                                    </div>
+                                </div>
+                                <div class="info-container">
+                                    <div class="info-column">
+                                        <strong>Category:</strong>
+                                        <span t-field="budget.kategori_anggaran"/>
+                                    </div>
+                                    <div class="info-column">
+                                        <strong>Total Amount:</strong>
+                                        <span t-field="budget.jumlah_anggaran"/>
+                                    </div>
+                                    <div class="info-column">
+                                        <strong>Creation Date:</strong>
+                                        <span t-field="budget.tanggal_pembuatan_anggaran"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Material Line -->
+                            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+                            <div class="report-section" t-if="budget.kategori_anggaran == 'materials'">
+                                <h2>Material Line</h2>
+                                <table class="w3-table-all">
+                                    <thead>
+                                        <tr class="w3-blue">
+                                            <th>Material</th>
+                                            <th>Quantity</th>
+                                            <th>Average Price</th>
+                                            <th>Total Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="budget.material_line_ids" t-as="material_line">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="material_line.material_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="material_line.quantity"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="material_line.average_price"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="material_line.total_amount"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Worker Line -->
+                            <div class="report-section" t-if="budget.kategori_anggaran == 'worker'">
+                                <h2>Worker Line</h2>
+                                <table class="w3-table-all">
+                                    <thead>
+                                        <tr class="w3-green">
+                                            <th>Worker</th>
+                                            <th>Days Worked</th>
+                                            <th>Salary</th>
+                                            <th>Total Salary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="budget.worker_line_ids" t-as="worker_line">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="worker_line.worker_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="worker_line.days_worked"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="worker_line.salary"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="worker_line.total_salary"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Equipment Line -->
+                            <div class="report-section" t-if="budget.kategori_anggaran == 'equipment'">
+                                <h2>Equipment Line</h2>
+                                <table class="w3-table-all">
+                                    <thead>
+                                        <tr class="w3-orange">
+                                            <th>Equipment</th>
+                                            <th>Days Rented</th>
+                                            <th>Rent Price</th>
+                                            <th>Total Rent</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="budget.equipment_line_ids" t-as="equipment_line">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="equipment_line.equipment_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="equipment_line.days_rented"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="equipment_line.rent_price"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="equipment_line.total_rent"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

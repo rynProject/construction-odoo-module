@@ -1,0 +1,31 @@
+<odoo>
+    <record id="purchase_report_wizard" model="ir.actions.report">
+        <field name="name">Purchase Report</field>
+        <field name="model">construction.purchase</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">construction.purchase_report_wizard_template_pdf</field>
+        <field name="report_file">minimartdoodex.purchase_report_wizard_template_pdf</field>
+        <field name="binding_model_id" ref="model_construction_purchase"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_project_pdf" model="ir.actions.report">
+        <field name="name">Print Project Report</field>
+        <field name="model">construction.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">construction.report_construction_project_pdf</field>
+        <field name="report_file">construction.report_construction_project_pdf</field>
+        <field name="binding_model_id" ref='model_construction_project'/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_budget_pdf" model="ir.actions.report">
+        <field name="name">Print Budget Report</field>
+        <field name="model">construction.budget</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">construction.report_construction_budget_pdf</field>
+        <field name="report_file">construction.report_construction_budget_pdf</field>
+        <field name="binding_model_id" ref='model_construction_budget'/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

@@ -28,15 +28,13 @@
                 <form>
                     <sheet>
                         <group>
-                            <group>
-                                <field name="name" readonly="1"/>
-                                <field name="project_id"/>
-                                <field name="applicant_name"/>
-                                <field name="permit_type"/>
-                                <field name="permit_status"/>
-                                <field name="submission_date"/>
-                                <field name="approval_date"/>
-                            </group>
+                            <field name="name" readonly="1"/>
+                            <field name="project_id"/>
+                            <field name="applicant_name"/>
+                            <field name="permit_type"/>
+                            <field name="permit_status"/>
+                            <field name="submission_date"/>
+                            <field name="approval_date"/>
                         </group>
                     </sheet>
                 </form>

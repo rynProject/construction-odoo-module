@@ -23,6 +23,9 @@
             <field name="model">construction.budget</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <button name="%(construction.report_budget_pdf)d" type="action" icon="fa-print" string="PRINT" class="btn btn-primary"/>
+                    </header>
                     <sheet>
                         <group>
                             <field name="name"/>

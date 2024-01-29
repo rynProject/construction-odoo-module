@@ -14,3 +14,6 @@ access_permit_user,permit user access,model_construction_permit,base.group_user,
 access_budget_material_line_user,Budget material Line user access,model_construction_budget_material_line,base.group_user,1,1,1,1
 access_budget_worker_line_user,Budget worker Line user access,model_construction_budget_worker_line,base.group_user,1,1,1,1
 access_budget_equipment_line_user,Budget equipment Line user access,model_construction_budget_equipment_line,base.group_user,1,1,1,1
+access_security_inspection_user,Security Inspection user access,model_construction_security,base.group_user,1,1,1,1
+access_maintenance_user,Maintenance user access,model_construction_maintenance,base.group_user,1,1,1,1
+access_purchasereportwz_user,Purchase Report Wizard user access,model_construction_purchasereportwz,base.group_user,1,1,1,1

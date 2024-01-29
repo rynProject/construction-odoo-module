@@ -20,6 +20,14 @@
                                 <field name="rent_price"/>
                                 <field name="vendor"/>
                             </group>
+                            <field name="maintenance_ids" widget="one2many_list">
+                                <tree editable='bottom'>
+                                    <field name="name"/>
+                                    <field name="maintenance_description"/>
+                                    <field name="maintenance_date"/>
+                                    <field name="maintenance_cost"/>
+                                </tree>
+                            </field>
                         </group>
                     </sheet>
                 </form>

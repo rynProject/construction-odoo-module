@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="purchase_report_wizard_template_pdf">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+                    <h1 style="text-align: center; margin-bottom: 20px;">PURCHASE REPORT</h1>
+                    <table class="w3-table-all">
+                        <thead>
+                            <tr class="w3-blue">
+                                <th class="text-center">Invoice Number</th>
+                                <th class="text-center">Purchased Date</th>
+                                <th class="text-center">Material</th>
+                                <th class="text-center">Quantity</th>
+                                <th class="text-center">Price</th>
+                                <th class="text-center">Total</th>
+                                <th class="text-center">Created By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="laporannya" t-as="line">
+                                <tr>
+                                    <td>
+                                        <span t-esc="line['name']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line['purchase_date']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line['material_id']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line['quantity']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line['price']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line['total']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line['create_uid']"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,53 @@
+<odoo>
+    <data>
+        <!-- Equipment Maintenance Tree View -->
+        <record id="view_construction_maintenance_tree" model="ir.ui.view">
+            <field name="name">construction.maintenance.tree</field>
+            <field name="model">construction.maintenance</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="equipment_id"/>
+                    <field name="maintenance_date"/>
+                    <field name="maintenance_cost"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Equipment Maintenance Form View -->
+        <record id="view_construction_maintenance_form" model="ir.ui.view">
+            <field name="name">construction.maintenance.form</field>
+            <field name="model">construction.maintenance</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="equipment_id"/>
+                                <field name="maintenance_date"/>
+                                <field name="maintenance_cost"/>
+                                <field name="maintenance_description"/>
+                            </group>
+                            <group>
+                                <field name="attachment" widget='image'></field>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action to Open the Equipment Maintenance List View -->
+        <record id="action_construction_maintenance" model="ir.actions.act_window">
+            <field name="name">Equipment Maintenance</field>
+            <field name="res_model">construction.maintenance</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_construction_maintenance_tree"/>
+        </record>
+
+        <!-- Menu for Equipment Maintenance -->
+        <menuitem id="menu_construction_maintenance_list" name="Equipment Maintenance" parent="menu_security_root" action="action_construction_maintenance"/>
+
+    </data>
+</odoo>

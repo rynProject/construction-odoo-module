@@ -1,0 +1,258 @@
+<odoo>
+    <data>
+        <template id="report_construction_project_pdf">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="project">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+
+                            <!-- Report Header -->
+                            <div class="report-header">
+                                <h1 class="report-title">PROJECT REPORT <style>
+                                    .centered-container {
+                                        max-width: 800px;
+                                        margin: 0 auto;
+                                    }
+
+                                    .centered-text {
+                                        text-align: center;
+                                    }
+                                    </style>
+                                </h1>
+                                <div class="info-container">
+                                    <div class="info-column">
+                                        <strong>Reference:</strong>
+                                        <span t-field="project.ref"/>
+                                    </div>
+                                    <div class="info-column">
+                                        <strong>Project Name:</strong>
+                                        <span t-field="project.name"/>
+                                    </div>
+                                </div>
+                                <div class="info-container">
+                                    <div class="info-column">
+                                        <strong>Client:</strong>
+                                        <span t-field="project.client"/>
+                                    </div>
+                                    <div class="info-column">
+                                        <strong>Location:</strong>
+                                        <span t-field="project.lokasi"/>
+                                    </div>
+                                </div>
+                                <div class="info-container">
+                                    <div class="info-column">
+                                        <strong>Start Date:</strong>
+                                        <span t-field="project.tanggal_mulai"/>
+                                    </div>
+                                </div>
+                                <div class="info-container">
+                                    <div class="info-column">
+                                        <strong>End Date:</strong>
+                                        <span t-field="project.tanggal_selesai"/>
+                                    </div>
+                                    <!-- Add more fields as needed -->
+                                </div>
+                            </div>
+
+                            <!-- Task List -->
+                            <div class="report-section">
+                                <h2>Task List</h2>
+                                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                                <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+                                <table class="w3-table-all">
+                                    <thead>
+                                        <tr class="w3-blue">
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Status</th>
+                                            <th>Manager</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="project.task_ids" t-as="task">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="task.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="task.deskripsi_tugas"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="task.tanggal_mulai"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="task.tanggal_selesai"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="task.status_tugas"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="task.id_manajer_tugas.name"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Budget List -->
+                            <div class="report-section">
+                                <h2>Budget List</h2>
+                                <table class="w3-table-all">
+                                    <thead>
+                                        <tr class="w3-green">
+                                            <th>Name</th>
+                                            <th>Category</th>
+                                            <th>Amount</th>
+                                            <th>Creation Date</th>
+                                            <th>Created By</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="project.budget_ids" t-as="budget">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="budget.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="budget.kategori_anggaran"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="budget.jumlah_anggaran"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="budget.tanggal_pembuatan_anggaran"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="budget.create_uid.name"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                                <div class="oe_title">
+                                    <h1>
+                                        <field name="total_budget" readonly="1" options="{'widget': 'handle'}"/>
+                                    </h1>
+                                </div>
+                            </div>
+
+                            <!-- Expenditure List -->
+                            <div class="report-section">
+                                <h2>Expenditure List</h2>
+                                <table class="w3-table-all">
+                                    <thead>
+                                        <tr class="w3-orange">
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Amount</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="project.expenditure_ids" t-as="expenditure">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="expenditure.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="expenditure.deskripsi_pengeluaran"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="expenditure.jumlah_pengeluaran"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="expenditure.tanggal_pengeluaran"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                                <div class="oe_title">
+                                    <h1>
+                                        <field name="total_expenditure" readonly="1" options="{'widget': 'handle'}"/>
+                                    </h1>
+                                </div>
+                            </div>
+                            <div class="report-section">
+                                <h2>Progress Note</h2>
+                                <table class="w3-table-all">
+                                    <thead>
+                                        <tr class="w3-yellow">
+                                            <th>Ref</th>
+                                            <th>Name</th>
+                                            <th>Progress Note</th>
+                                            <th>Date</th>
+                                            <th>Created By</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="project.progress_ids" t-as="progress">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="progress.ref"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="progress.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="progress.catatan_kemajuan"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="changeinplan.tanggal_pembuatan_catatan"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="changeinplan.create_uid"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Change In Plan -->
+                            <div class="report-section">
+                                <h2>Change In Plan</h2>
+                                <table class="w3-table-all">
+                                    <thead>
+                                        <tr class="w3-red">
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Date</th>
+                                            <th>Cost Impact</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="project.changeinplan_ids" t-as="changeinplan">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="changeinplan.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="changeinplan.change_description"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="changeinplan.change_date"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="changeinplan.cost_impact"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                                <div class="oe_title">
+                                    <h1>
+                                        <field name="total_impact_cost" readonly="1" options="{'widget': 'handle'}"/>
+                                    </h1>
+                                </div>
+                            </div>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

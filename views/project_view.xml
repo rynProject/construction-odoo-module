@@ -9,7 +9,6 @@
                     <field name="ref"/>
                     <field name="name"/>
                     <field name="client"/>
-                    <field name="lokasi"></field>
                     <field name="lokasi"/>
                     <field name="tanggal_mulai"/>
                     <field name="tanggal_selesai"/>
@@ -25,6 +24,9 @@
             <field name="model">construction.project</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <button name="%(construction.report_project_pdf)d" type="action" icon="fa-print" string="PRINT" class="btn btn-primary"/>
+                    </header>
                     <sheet>
                         <group>
                             <group>
@@ -33,18 +35,22 @@
                                 <field name="lokasi"></field>
                                 <field name="tanggal_mulai"/>
                                 <field name="tanggal_selesai"/>
+                            </group>
+                            <group>
                                 <field name="status_proyek"></field>
                                 <field name="id_manajer_proyek"/>
                                 <field name="latitude"/>
                                 <field name="longitude"/>
-                            </group>
-                            <group>
-                                <div id="map_canvas" style="width:550px;height:300px;"></div>
-                                <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&amp;callback=initialize" async="async"></script>
-                                <script type="text/javascript" src="/construction/static/src/js/map_google_maps_integration.js"></script>
+                                <button string="Share" type="object" class="oe_highlight" icon="fa-whatsapp" name="open_whatsapp_with_location"/>
+
                             </group>
                         </group>
                         <notebook>
+                            <page string="Location">
+                                <div id="map_canvas" style="width:1250px; height:1000px;"></div>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&amp;callback=initialize" async="async"></script>
+                                <script type="text/javascript" src="/construction/static/src/js/map_google_maps_integration.js"></script>
+                            </page>
                             <page string="Task List">
                                 <field name="task_ids" widget="one2many_list" options="{'editable': true}">
                                     <tree editable="bottom">
@@ -84,6 +90,25 @@
                                         <field name="deskripsi_pengeluaran"/>
                                         <field name="jumlah_pengeluaran"/>
                                         <field name="tanggal_pengeluaran"/>
+                                        <button name="get_formview_action" type="object" icon="fa-eye"/>
+                                    </tree>
+                                </field>
+                                <group>
+                                    <div class="oe_title">
+                                        <h1>
+                                            <field name="total_expenditure" readonly="1" options="{'widget': 'handle'}"/>
+                                        </h1>
+                                    </div>
+                                </group>
+                            </page>
+                            <page string="Progress note">
+                                <field name="progress_ids" widget="one2many_list" options="{'editable': true}">
+                                    <tree editable="bottom">
+                                        <field name="ref"/>
+                                        <field name="name"/>
+                                        <field name="catatan_kemajuan"/>
+                                        <field name="tanggal_pembuatan_catatan"/>
+                                        <field name="create_uid"/>
                                         <button name="get_formview_action" type="object" icon="fa-eye"/>
                                     </tree>
                                 </field>

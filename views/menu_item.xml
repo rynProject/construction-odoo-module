@@ -1,5 +1,5 @@
 <odoo>
-    <menuitem id="menu_construction" name="Construction"/>
+    <menuitem id="menu_construction" name="Construction" web_icon="construction,static/src/img/menu_icon.png"/>
 
     <menuitem id="menu_project_management_root" name="Project Management" parent="menu_construction"/>
 
@@ -10,5 +10,7 @@
     <menuitem id="menu_evaluations_root" name="Evaluations" parent="menu_construction"/>
 
     <menuitem id="menu_permit_root" name="Permit" parent="menu_construction"/>
+
+    <menuitem id="menu_security_root" name="Seurity And Maintenance" parent="menu_construction"/>
 
 </odoo>

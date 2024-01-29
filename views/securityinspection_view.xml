@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+        <!-- Security Inspection Tree View -->
+        <record id="view_construction_security_tree" model="ir.ui.view">
+            <field name="name">construction.security.tree</field>
+            <field name="model">construction.security</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="project_id"/>
+                    <field name="inspection_date"/>
+                    <field name="preventive_action"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Security Inspection Form View -->
+        <record id="view_construction_security_form" model="ir.ui.view">
+            <field name="name">construction.security.form</field>
+            <field name="model">construction.security</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="project_id"/>
+                                <field name="inspection_date"/>
+                            </group>
+                            <group>
+                                <field name="attachment" widget="image" filename="attachment"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="inspection_notes"/>
+                        </group>
+                        <group>
+                            <field name="preventive_action"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action to Open the Security Inspection List View -->
+        <record id="action_construction_security" model="ir.actions.act_window">
+            <field name="name">Security Inspections</field>
+            <field name="res_model">construction.security</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_construction_security_tree"/>
+        </record>
+
+        <!-- Menu for Security Inspections -->
+        <menuitem id="menu_construction_security_list" name="Security Inspections" parent="menu_security_root" action="action_construction_security"/>
+
+    </data>
+</odoo>

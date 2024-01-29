@@ -9,4 +9,5 @@ class Equipment(models.Model):
     availability = fields.Boolean(string='Availability', default=True)
     total_unit = fields.Integer(string='Total Unit')
     rent_price = fields.Integer(string='Rent Price')
-    vendor = fields.Many2one('res.partner', 'Vendor')
+    vendor = fields.Many2one('res.partner', string='Vendor')
+    maintenance_ids = fields.One2many('construction.maintenance', 'equipment_id', string='Maintenance Records')

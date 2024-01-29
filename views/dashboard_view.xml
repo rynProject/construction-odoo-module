@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <record id="view_construction_project_bar_chart" model="ir.ui.view">
+            <field name="name">construction.project.bar.chart</field>
+            <field name="model">construction.project</field>
+            <field name="arch" type="xml">
+                <graph string="Dashboard">
+                    <!-- Define your bar chart here -->
+                    <field name="status_proyek" type="row"/>
+                    <field name="project_count" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Define the action for the bar chart -->
+        <record id="action_construction_project_bar_chart" model="ir.actions.act_window">
+            <field name="name">Projects Bar Chart</field>
+            <field name="res_model">construction.project</field>
+            <field name="view_mode">graph</field>
+            <!-- Specify the Bar Chart view -->
+            <field name="view_id" ref="construction.view_construction_project_bar_chart"/>
+        </record>
+        <menuitem id="menu_construction_project_bar_chart" name="Dashboard" parent="menu_construction" action="construction.action_construction_project_bar_chart" sequence='5'/>
+    </data>
+</odoo>
