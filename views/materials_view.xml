@@ -40,6 +40,7 @@
                     <group>
                         <field name="purchase_ids" widget="one2many_list">
                             <tree>
+                                <field name="purchase_date"/>
                                 <field name="name"/>
                                 <field name="price"/>
                                 <field name="quantity"/>

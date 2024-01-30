@@ -27,19 +27,23 @@
                     <button string="Confirm" type="object" class="btn btn-success" icon="fa-play" name="action_ongoing" attrs="{'invisible': [('status_tugas', '!=', 'draft')]}" />
                     <button string="Cancel" type="object" class="btn btn-danger" icon="fa-ban" name="action_cancel" attrs="{'invisible': [('status_tugas', '=', 'cancel')]}"/>
                     <button string="Draft" type="object" class="btn btn-warning" icon="fa-file-o" name="action_draft" attrs="{'invisible': [('status_tugas', '!=', 'ongoing'), ('status_tugas', '!=', 'cancel')]}" />
+                    <field name="status_tugas" widget="statusbar" options="{'statusbar_visible': True}" statusbar_visible="draft,ongoing,completed,cancel"/>
                 </header>
                 <sheet>
-                    <field name="status_tugas" widget="statusbar" options="{'statusbar_visible': True}" statusbar_visible="draft,ongoing,completed,cancel"/>
                     <h1>
                         <field name="ref"/>
                     </h1>
                     <group>
-                        <field name="name"/>
-                        <field name="deskripsi_tugas"/>
-                        <field name="tanggal_mulai"/>
-                        <field name="tanggal_selesai"/>
-                        <field name="id_proyek"/>
-                        <field name="id_manajer_tugas"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="deskripsi_tugas"/>
+                            <field name="id_proyek"/>
+                        </group>
+                        <group>
+                            <field name="tanggal_mulai"/>
+                            <field name="tanggal_selesai"/>
+                            <field name="id_manajer_tugas"/>
+                        </group>
                     </group>
                     <group>
                         <field name="evaluation_ids" widget="one2many_list">
@@ -52,6 +56,11 @@
                         </field>
                     </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </form>
         </field>
     </record>

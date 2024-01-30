@@ -6,7 +6,7 @@
     "license": "AGPL-3",
     "website": "https://www.github.com/rynproject",
     "version": "0.0.1",
-    'depends': ['base'],
+    'depends': ['base', 'mail'],
     "application": True,
     "data": [
         'security/ir.model.access.csv',

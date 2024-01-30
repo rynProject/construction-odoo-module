@@ -6,6 +6,7 @@ from datetime import datetime
 class Project(models.Model):
     _name = 'construction.project'
     _description = 'Project Management'
+    _inherit = ["mail.thread", "mail.activity.mixin"]
 
     ref = fields.Char(string='Ref', required=True, copy=False, readonly=True, index=True, default=lambda self: self._generate_evaluation_name())
     name = fields.Char(string='Project Name', required=True)

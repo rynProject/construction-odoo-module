@@ -13,7 +13,7 @@
                     <field name="catatan_kemajuan"/>
                     <field name="tanggal_pembuatan_catatan"/>
                     <field name="create_uid"/>
-                    <field name="attachment" widget='image'></field>
+                    <field name="attachment" widget='image' options="{'size': (100, 100)}"></field>
                 </tree>
             </field>
         </record>
@@ -39,6 +39,11 @@
                                 <field name="attachment" widget='image'></field>
                             </group>
                         </group>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers"/>
+                            <field name="activity_ids" widget="mail_activity"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                        </div>
                     </sheet>
                 </form>
             </field>

@@ -4,6 +4,7 @@ from datetime import datetime
 class ProgressNote(models.Model):
     _name = 'construction.progress'
     _description = 'Progress Note'
+    _inherit = ["mail.thread", "mail.activity.mixin"]
 
     ref = fields.Char(string='Ref', required=True, copy=False, readonly=True, index=True, default=lambda self: self._generate_evaluation_name())
     name = fields.Char(string='Name', required=True)
