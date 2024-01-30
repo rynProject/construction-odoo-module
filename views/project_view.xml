@@ -56,7 +56,7 @@
                         <notebook>
                             <page string="Location">
                                 <div id="map_canvas" style="width:100%; height:1000px;"></div>
-                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6QG-pqKptJ0G8pPfo2Ndxc2q4cHctT0E&amp;callback=initialize" async="async"></script>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&amp;callback=initialize" async="async"></script>
                                 <script type="text/javascript" src="/construction/static/src/js/map_google_maps_integration.js"></script>
                             </page>
                             <page string="Task List">
