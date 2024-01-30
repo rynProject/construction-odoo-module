@@ -6,6 +6,7 @@
             <field name="model">construction.maintenance</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="ref"/>
                     <field name="name"/>
                     <field name="equipment_id"/>
                     <field name="maintenance_date"/>
@@ -26,7 +27,7 @@
                         </h1>
                         <group>
                             <group>
-                                <field name="name" readonly="1"/>
+                                <field name="name"/>
                                 <field name="equipment_id"/>
                                 <field name="maintenance_date"/>
                                 <field name="maintenance_cost"/>

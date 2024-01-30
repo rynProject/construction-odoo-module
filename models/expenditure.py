@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from odoo import api, models, fields
 
 class Expenditure(models.Model):

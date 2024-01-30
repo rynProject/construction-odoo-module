@@ -16,7 +16,6 @@
                             <group>
                                 <field name="name"/>
                                 <field name="capacity"/>
-                                <field name="availability"/>
                             </group>
                             <group>
                                 <field name="total_unit"/>
@@ -43,9 +42,9 @@
             <field name="model">construction.equipment</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="ref"/>
                     <field name="name"/>
                     <field name="capacity"/>
-                    <field name="availability"/>
                     <field name="total_unit"/>
                     <field name="rent_price"/>
                     <field name="vendor"/>

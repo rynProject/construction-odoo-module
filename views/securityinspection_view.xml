@@ -6,6 +6,7 @@
             <field name="model">construction.security</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="ref"/>
                     <field name="name"/>
                     <field name="project_id"/>
                     <field name="inspection_date"/>
@@ -22,7 +23,7 @@
                 <form>
                     <sheet>
                         <h1>
-                            <field name="name" readonly="1"/>
+                            <field name="ref" readonly="1"/>
                         </h1>
                         <group>
                             <group>

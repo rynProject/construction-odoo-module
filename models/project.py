@@ -26,6 +26,7 @@ class Project(models.Model):
     progress_ids = fields.One2many(comodel_name='construction.progress', inverse_name='id_proyek')
     changeinplan_ids = fields.One2many(comodel_name='construction.changeinplanning', inverse_name='project_id', string='Change in Plans')
     security_ids = fields.One2many(comodel_name='construction.security', inverse_name='project_id', string='Security')
+    permit_ids = fields.One2many(comodel_name='construction.permit', inverse_name='project_id', string='Permit')
     
     lokasi = fields.Char(string='Location')
     latitude = fields.Float(string='Latitude', digits=(8, 6))

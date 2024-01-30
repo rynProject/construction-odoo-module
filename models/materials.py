@@ -1,4 +1,8 @@
-import datetime
+import base64
+from datetime import datetime
+import io
+
+import tabula
 from odoo import models, fields, api
 
 class Material(models.Model):
@@ -6,9 +10,9 @@ class Material(models.Model):
     _description = 'Material'
 
     ref = fields.Char(string='Ref', required=True, copy=False, readonly=True, index=True, default=lambda self: self._generate_evaluation_name())
-    name = fields.Char(string='Material Name', required=True)
+    name = fields.Char(string='Material Name')
     available_stock = fields.Integer(string='Available Stock', readonly=True)
-    average_price = fields.Float(string='Average Price', compute='_compute_average_price', store=True)
+    average_price = fields.Float(string='Average Price', compute='_compute_average_price', store=True, readonly=True)
     purchase_ids = fields.One2many('construction.purchase', 'material_id', string='Purchases')
     budget_line_ids = fields.One2many('construction.budget.material.line', 'material_id', string='Budget Lines')
     image = fields.Binary(string='Image', attachment=True)

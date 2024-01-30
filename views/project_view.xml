@@ -45,7 +45,6 @@
                                 <field name="tanggal_selesai"/>
                             </group>
                             <group>
-                                <field name="status_proyek"></field>
                                 <field name="id_manajer_proyek"/>
                                 <field name="latitude"/>
                                 <field name="longitude"/>
@@ -62,6 +61,7 @@
                             <page string="Task List">
                                 <field name="task_ids" widget="one2many_list" options="{'editable': true}">
                                     <tree editable="bottom">
+                                        <field name="ref"/>
                                         <field name="name"/>
                                         <field name="deskripsi_tugas"/>
                                         <field name="tanggal_mulai"/>
@@ -75,6 +75,7 @@
                             <page string="Budget List">
                                 <field name="budget_ids" widget="one2many_list" options="{'editable': true}">
                                     <tree editable="bottom">
+                                        <field name="ref"/>
                                         <field name="name"/>
                                         <field name="kategori_anggaran"/>
                                         <field name="jumlah_anggaran"/>
@@ -94,6 +95,7 @@
                             <page string="Expenditure List">
                                 <field name="expenditure_ids" widget="one2many_list" options="{'editable': true}">
                                     <tree editable="bottom">
+                                        <field name="ref"/>
                                         <field name="name"/>
                                         <field name="deskripsi_pengeluaran"/>
                                         <field name="jumlah_pengeluaran"/>
@@ -131,6 +133,7 @@
                             <page string="Change In Plan">
                                 <field name="changeinplan_ids" widget="one2many_list" options="{'editable': true}">
                                     <tree editable="bottom">
+                                        <field name="ref"/>
                                         <field name="name"/>
                                         <field name="change_description"/>
                                         <field name="change_date"/>
@@ -149,9 +152,24 @@
                             <page string="Security Inspection">
                                 <field name="security_ids" widget="one2many_list" options="{'editable': true}">
                                     <tree editable="bottom">
+                                        <field name="ref"/>
                                         <field name="inspection_notes"/>
                                         <field name="inspection_date"/>
                                         <field name="preventive_action"/>
+                                        <button name="get_formview_action" type="object" icon="fa-eye"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Permit">
+                                <field name="permit_ids" widget="one2many_list" options="{'editable': true}">
+                                    <tree editable="bottom">
+                                        <field name="ref"/>
+                                        <field name="name"/>
+                                        <field name="applicant_name"/>
+                                        <field name="permit_type"/>
+                                        <field name="permit_status" decoration-success="permit_status == 'approved'" decoration-warning="permit_status == 'pending'" decoration-danger="permit_status == 'rejected'" widget="badge" optional="show"/>
+                                        <field name="submission_date"/>
+                                        <field name="approval_date"/>
                                         <button name="get_formview_action" type="object" icon="fa-eye"/>
                                     </tree>
                                 </field>

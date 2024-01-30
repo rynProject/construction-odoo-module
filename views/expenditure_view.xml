@@ -7,6 +7,7 @@
             <field name="model">construction.expenditure</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="ref"/>
                     <field name="name"/>
                     <field name="id_proyek"/>
                     <field name="deskripsi_pengeluaran"/>

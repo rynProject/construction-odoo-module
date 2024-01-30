@@ -197,10 +197,10 @@
                                                     <span t-esc="progress.catatan_kemajuan"/>
                                                 </td>
                                                 <td>
-                                                    <span t-esc="changeinplan.tanggal_pembuatan_catatan"/>
+                                                    <span t-esc="progress.tanggal_pembuatan_catatan"/>
                                                 </td>
                                                 <td>
-                                                    <span t-esc="changeinplan.create_uid"/>
+                                                    <span t-esc="progress.create_uid"/>
                                                 </td>
                                             </tr>
                                         </t>
@@ -244,7 +244,72 @@
                                     </h1>
                                 </div>
                             </div>
-
+                            <div class="report-section">
+                                <h2>Security Inspection</h2>
+                                <table class="w3-table-all">
+                                    <thead>
+                                        <tr class="w3-red">
+                                            <th>Inspection note</th>
+                                            <th>Inspection Date</th>
+                                            <th>Preventive Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="project.security_ids" t-as="security">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="security.inspection_notes"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="security.inspection_date"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="security.preventive_action"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="report-section">
+                                <h2>Permit</h2>
+                                <table class="w3-table-all">
+                                    <thead>
+                                        <tr class="w3-red">
+                                            <th>Name</th>
+                                            <th>Applicant Name</th>
+                                            <th>Permit Type</th>
+                                            <th>Permit Status</th>
+                                            <th>Submission Date</th>
+                                            <th>Approval Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="project.permit_ids" t-as="permit">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="permit.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="permit.applicant_name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="permit.permit_type"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="permit.permit_status"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="permit.submission_date"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="permit.approval_date"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </t>
                 </t>

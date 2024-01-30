@@ -9,13 +9,15 @@
             <field name="model">construction.permit</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="ref"/>
                     <field name="name"/>
                     <field name="project_id"/>
                     <field name="applicant_name"/>
                     <field name="permit_type"/>
-                    <field name="permit_status"/>
+                    <field name="permit_status" decoration-success="permit_status == 'approved'" decoration-warning="permit_status == 'pending'" decoration-danger="permit_status == 'rejected'" widget="badge" optional="show"/>
                     <field name="submission_date"/>
                     <field name="approval_date"/>
+                    <field name="attachment"></field>
                 </tree>
             </field>
         </record>
@@ -31,13 +33,14 @@
                             <field name="ref"/>
                         </h1>
                         <group>
-                            <field name="name" readonly="1"/>
+                            <field name="name"/>
                             <field name="project_id"/>
                             <field name="applicant_name"/>
                             <field name="permit_type"/>
-                            <field name="permit_status"/>
+                            <field name="permit_status"></field>
                             <field name="submission_date"/>
                             <field name="approval_date"/>
+                            <field name="attachment" widget='binary'></field>
                         </group>
                     </sheet>
                 </form>

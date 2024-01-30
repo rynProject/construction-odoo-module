@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from venv import logger
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError

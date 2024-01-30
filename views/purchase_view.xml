@@ -29,6 +29,7 @@
             <field name="model">construction.purchase</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="ref"/>
                     <field name="name"/>
                     <field name="material_id"/>
                     <field name="quantity"/>
