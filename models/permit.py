@@ -5,6 +5,7 @@ class ConstructionPermit(models.Model):
     _name = 'construction.permit'
     _description = 'Construction Permit'
 
+    ref = fields.Char(string='Ref', required=True, copy=False, readonly=True, index=True, default=lambda self: self._generate_evaluation_name())
     name = fields.Char(string='ID', required=True, copy=False, readonly=True,
                        index=True, default=lambda self: self._generate_permit_name())
     project_id = fields.Many2one('construction.project', string='Project', required=True)
@@ -23,7 +24,8 @@ class ConstructionPermit(models.Model):
     approval_date = fields.Date(string='Approval Date')
 
     @api.model
-    def _generate_permit_name(self):
-        today = datetime.now().strftime('%Y%m%d')
-        sequence_number = self.env['ir.sequence'].next_by_code('construction.permit') or '0001'
-        return f'PERMIT{today}{sequence_number.zfill(4)}'
+    def _generate_evaluation_name(self):
+        # Generate a unique name in the format "EVAL+date+auto increment"
+        today_date_str = datetime.now().strftime('%Y%m%d')
+        evaluations_today = self.search_count([('name', 'like', f'PERMIT{today_date_str}')])
+        return f'PERMIT{today_date_str}{evaluations_today + 1:04d}'

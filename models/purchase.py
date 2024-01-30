@@ -5,6 +5,7 @@ class Purchase(models.Model):
     _name = 'construction.purchase'
     _description = 'Purchase'
 
+    ref = fields.Char(string='Ref', required=True, copy=False, readonly=True, index=True, default=lambda self: self._generate_evaluation_name())
     name = fields.Char(string='Invoice Number', readonly=True, default=lambda self: self._get_next_invoice_number())
     material_id = fields.Many2one('construction.material', string='Material', required=True)
     quantity = fields.Integer(string='Quantity', required=True)
@@ -14,6 +15,13 @@ class Purchase(models.Model):
     create_uid = fields.Many2one('res.users', string='Created By', required=True)
 
     attachment_ids = fields.Binary(string='Attachments')
+
+    @api.model
+    def _generate_evaluation_name(self):
+        # Generate a unique name in the format "BUF+date+auto increment"
+        today_date_str = datetime.now().strftime('%Y%m%d')
+        evaluations_today = self.search_count([('ref', 'like', f'INV{today_date_str}')])
+        return f'INV{today_date_str}{evaluations_today + 1:04d}'
 
     @api.model
     def _get_next_invoice_number(self):

@@ -5,7 +5,8 @@ class Evaluation(models.Model):
     _name = 'evaluation'
     _description = 'Evaluation Model'
 
-    name = fields.Char(string='Ref', required=True, copy=False, readonly=True, index=True, default=lambda self: self._generate_evaluation_name())
+    ref = fields.Char(string='Ref', required=True, copy=False, readonly=True, index=True, default=lambda self: self._generate_evaluation_name())
+    name = fields.Char(string='Name')
     id_tugas = fields.Many2one('construction.task', string='Task', required=True)
     penilaian_kinerja = fields.Selection([
         ('excellent', 'Excellent'),

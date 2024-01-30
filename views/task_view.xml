@@ -6,19 +6,12 @@
         <field name="model">construction.task</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="ref"/>
                 <field name="name"/>
-                <field name="status_tugas"/>
+                <field name="status_tugas" decoration-success="status_tugas == 'completed'" decoration-warning="status_tugas == 'ongoing'" decoration-muted="status_tugas == 'draft'" widget="badge" optional="show"/>
                 <field name="id_proyek"/>
                 <field name="id_manajer_tugas"/>
                 <field name="create_uid"/>
-                <field name="evaluation_ids" widget="one2many_list">
-                    <tree>
-                        <field name="penilaian_kinerja"/>
-                        <field name="komentar_evaluasi"/>
-                        <field name="tanggal_evaluasi"/>
-                        <!-- Add more fields as needed for the evaluation model -->
-                    </tree>
-                </field>
             </tree>
         </field>
     </record>
@@ -29,13 +22,22 @@
         <field name="model">construction.task</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button string="Complete" type="object" class="btn btn-success" icon="fa-check" name="action_confirm" attrs="{'invisible': [('status_tugas', '!=', 'ongoing')]}" />
+                    <button string="Confirm" type="object" class="btn btn-success" icon="fa-play" name="action_ongoing" attrs="{'invisible': [('status_tugas', '!=', 'draft')]}" />
+                    <button string="Cancel" type="object" class="btn btn-danger" icon="fa-ban" name="action_cancel" attrs="{'invisible': [('status_tugas', '=', 'cancel')]}"/>
+                    <button string="Draft" type="object" class="btn btn-warning" icon="fa-file-o" name="action_draft" attrs="{'invisible': [('status_tugas', '!=', 'ongoing'), ('status_tugas', '!=', 'cancel')]}" />
+                </header>
                 <sheet>
+                    <field name="status_tugas" widget="statusbar" options="{'statusbar_visible': True}" statusbar_visible="draft,ongoing,completed,cancel"/>
+                    <h1>
+                        <field name="ref"/>
+                    </h1>
                     <group>
                         <field name="name"/>
                         <field name="deskripsi_tugas"/>
                         <field name="tanggal_mulai"/>
                         <field name="tanggal_selesai"/>
-                        <field name="status_tugas"/>
                         <field name="id_proyek"/>
                         <field name="id_manajer_tugas"/>
                     </group>

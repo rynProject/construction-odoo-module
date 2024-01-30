@@ -1,3 +1,4 @@
+import datetime
 from venv import logger
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
@@ -6,6 +7,7 @@ class Budget(models.Model):
     _name = 'construction.budget'
     _description = 'Budget Management'
 
+    ref = fields.Char(string='Ref', required=True, copy=False, readonly=True, index=True, default=lambda self: self._generate_evaluation_name())
     name = fields.Char(string='Name')
     id_proyek = fields.Many2one('construction.project', string='Project', required=True)
     kategori_anggaran = fields.Selection([
@@ -29,6 +31,13 @@ class Budget(models.Model):
             equipment_total = sum(rec.equipment_line_ids.mapped('total_rent'))
             total = material_total + worker_total + equipment_total
             rec.jumlah_anggaran = total
+    
+    @api.model
+    def _generate_evaluation_name(self):
+        # Generate a unique name in the format "EVAL+date+auto increment"
+        today_date_str = datetime.now().strftime('%Y%m%d')
+        evaluations_today = self.search_count([('name', 'like', f'BUD{today_date_str}')])
+        return f'BUD{today_date_str}{evaluations_today + 1:04d}'
 
     @api.onchange('kategori_anggaran')
     def _onchange_kategori_anggaran(self):

@@ -22,6 +22,9 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
+                        <h1>
+                            <field name="ref"/>
+                        </h1>
                         <group>
                             <field name="name"/>
                             <field name="position"/>

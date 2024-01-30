@@ -25,9 +25,17 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
+                        <button string="Complete" type="object" class="btn btn-success" icon="fa-check" name="action_confirm" attrs="{'invisible': [('status_proyek', '!=', 'ongoing')]}" />
+                        <button string="Confirm" type="object" class="btn btn-success" icon="fa-play" name="action_ongoing" attrs="{'invisible': [('status_proyek', '!=', 'draft')]}" />
+                        <button string="Cancel" type="object" class="btn btn-danger" icon="fa-ban" name="action_cancel" attrs="{'invisible': [('status_proyek', '=', 'cancel')]}"/>
+                        <button string="Draft" type="object" class="btn btn-warning" icon="fa-file-o" name="action_draft" attrs="{'invisible': [('status_proyek', '!=', 'ongoing'), ('status_proyek', '!=', 'cancel')]}" />
                         <button name="%(construction.report_project_pdf)d" type="action" icon="fa-print" string="PRINT" class="btn btn-primary"/>
                     </header>
                     <sheet>
+                        <field name="status_proyek" widget="statusbar" options="{'statusbar_visible': True}" statusbar_visible="draft,ongoing,completed,cancel"/>
+                        <h1>
+                            <field name="ref"></field>
+                        </h1>
                         <group>
                             <group>
                                 <field name="name"/>
@@ -48,7 +56,7 @@
                         <notebook>
                             <page string="Location">
                                 <div id="map_canvas" style="width:100%; height:1000px;"></div>
-                                <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&amp;callback=initialize" async="async"></script>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6QG-pqKptJ0G8pPfo2Ndxc2q4cHctT0E&amp;callback=initialize" async="async"></script>
                                 <script type="text/javascript" src="/construction/static/src/js/map_google_maps_integration.js"></script>
                             </page>
                             <page string="Task List">
@@ -137,6 +145,16 @@
                                         </h1>
                                     </div>
                                 </group>
+                            </page>
+                            <page string="Security Inspection">
+                                <field name="security_ids" widget="one2many_list" options="{'editable': true}">
+                                    <tree editable="bottom">
+                                        <field name="inspection_notes"/>
+                                        <field name="inspection_date"/>
+                                        <field name="preventive_action"/>
+                                        <button name="get_formview_action" type="object" icon="fa-eye"/>
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>

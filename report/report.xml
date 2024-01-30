@@ -4,7 +4,7 @@
         <field name="model">construction.purchase</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">construction.purchase_report_wizard_template_pdf</field>
-        <field name="report_file">minimartdoodex.purchase_report_wizard_template_pdf</field>
+        <field name="report_file">construction.purchase_report_wizard_template_pdf</field>
         <field name="binding_model_id" ref="model_construction_purchase"/>
         <field name="binding_type">report</field>
     </record>

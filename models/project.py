@@ -7,7 +7,7 @@ class Project(models.Model):
     _name = 'construction.project'
     _description = 'Project Management'
 
-    ref = fields.Char(string='Ref', compute='_compute_ref', store=True)
+    ref = fields.Char(string='Ref', required=True, copy=False, readonly=True, index=True, default=lambda self: self._generate_evaluation_name())
     name = fields.Char(string='Project Name', required=True)
     client = fields.Many2one(comodel_name='res.partner', string='Client')
     tanggal_mulai = fields.Date(string='Start Date')
@@ -16,6 +16,7 @@ class Project(models.Model):
         ('draft', 'Draft'),
         ('ongoing', 'Ongoing'),
         ('completed', 'Completed'),
+        ('cancel', 'Canceled'),
     ], string='Status Proyek', default='draft')
     id_manajer_proyek = fields.Many2one('res.users', string='Project Manager', required=True)
 
@@ -24,6 +25,7 @@ class Project(models.Model):
     expenditure_ids = fields.One2many(comodel_name='construction.expenditure', inverse_name='id_proyek', string='Expenditures')
     progress_ids = fields.One2many(comodel_name='construction.progress', inverse_name='id_proyek')
     changeinplan_ids = fields.One2many(comodel_name='construction.changeinplanning', inverse_name='project_id', string='Change in Plans')
+    security_ids = fields.One2many(comodel_name='construction.security', inverse_name='project_id', string='Security')
     
     lokasi = fields.Char(string='Location')
     latitude = fields.Float(string='Latitude', digits=(8, 6))
@@ -33,21 +35,23 @@ class Project(models.Model):
     total_expenditure = fields.Integer(string='Total Expenditure', compute='_compute_total_expenditure', store=True)
     total_impact_cost = fields.Float(string='Total Impact Cost', compute='_compute_total_impact_cost', store=True)
 
-    @api.depends('name')
-    def _compute_ref(self):
-        for project in self:
-            if project.name:
-                current_date = datetime.now().strftime("%Y%m%d")
-                ref_prefix = 'PROJECT'
-                existing_refs = project.search([('ref', 'like', f'{ref_prefix}{current_date}%')])
+    def action_confirm(self):
+        self.write({'status_proyek':'completed'})
+    def action_done(self):
+        self.write({'status_proyek':'completed'})
+    def action_ongoing(self):
+        self.write({'status_proyek':'ongoing'})
+    def action_cancel(self):
+        self.write({'status_proyek':'cancel'})
+    def action_draft(self):
+        self.write({'status_proyek':'draft'})
 
-                if existing_refs:
-                    latest_ref = max(existing_refs.mapped('ref'))
-                    sequence_number = int(latest_ref[len(ref_prefix) + len(current_date):]) + 1
-                else:
-                    sequence_number = 1
-
-                project.ref = f'{ref_prefix}{current_date}{sequence_number:04d}'
+    @api.model
+    def _generate_evaluation_name(self):
+        # Generate a unique name in the format "BUF+date+auto increment"
+        today_date_str = datetime.now().strftime('%Y%m%d')
+        evaluations_today = self.search_count([('ref', 'like', f'PROJECT{today_date_str}')])
+        return f'PROJECT{today_date_str}{evaluations_today + 1:04d}'
     
     @api.depends('budget_ids.jumlah_anggaran')
     def _compute_total_budget(self):

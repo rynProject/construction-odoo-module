@@ -27,6 +27,9 @@
                         <button name="%(construction.report_budget_pdf)d" type="action" icon="fa-print" string="PRINT" class="btn btn-primary"/>
                     </header>
                     <sheet>
+                        <h1>
+                            <field name="ref"/>
+                        </h1>
                         <group>
                             <field name="name"/>
                             <field name="id_proyek"/>
